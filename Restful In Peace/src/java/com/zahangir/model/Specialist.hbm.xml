@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 10, 2017 4:54:20 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zahangir.model.Specialist" table="specialist" catalog="restful_in_peace" optimistic-lock="version">
+        <id name="specialistId" type="java.lang.Integer">
+            <column name="specialist_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="indoor" class="com.zahangir.model.Indoor" fetch="select">
+            <column name="indoor_id" not-null="true" />
+        </many-to-one>
+        <property name="specialistName" type="string">
+            <column name="specialist_name" length="45" not-null="true" />
+        </property>
+        <property name="specialistQualification" type="string">
+            <column name="specialist_qualification" length="45" not-null="true" />
+        </property>
+        <property name="specialistSpeialty" type="string">
+            <column name="specialist_speialty" length="45" not-null="true" />
+        </property>
+        <property name="specialistAddress" type="string">
+            <column name="specialist_address" length="45" not-null="true" />
+        </property>
+        <property name="specialistContactNo" type="string">
+            <column name="specialist_contact_no" length="45" not-null="true" />
+        </property>
+        <property name="specialistGender" type="string">
+            <column name="specialist_gender" length="45" not-null="true" />
+        </property>
+        <property name="specialistEmail" type="string">
+            <column name="specialist_email" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

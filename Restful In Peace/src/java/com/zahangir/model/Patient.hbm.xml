@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 10, 2017 4:54:20 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zahangir.model.Patient" table="patient" catalog="restful_in_peace" optimistic-lock="version">
+        <id name="patientId" type="java.lang.Integer">
+            <column name="patient_id" />
+            <generator class="identity" />
+        </id>
+        <property name="patientName" type="string">
+            <column name="patient_name" length="45" not-null="true" />
+        </property>
+        <property name="patientAge" type="int">
+            <column name="patient_age" not-null="true" />
+        </property>
+        <property name="patientGender" type="string">
+            <column name="patient_gender" length="45" not-null="true" />
+        </property>
+        <property name="patientAddress" type="string">
+            <column name="patient_address" length="45" not-null="true" />
+        </property>
+        <property name="patientContactNo" type="string">
+            <column name="patient_contact_no" length="45" not-null="true" />
+        </property>
+        <property name="patientEmail" type="string">
+            <column name="patient_email" length="45" not-null="true" />
+        </property>
+        <set name="admissions" table="admission" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="patient_id" not-null="true" />
+            </key>
+            <one-to-many class="com.zahangir.model.Admission" />
+        </set>
+    </class>
+</hibernate-mapping>

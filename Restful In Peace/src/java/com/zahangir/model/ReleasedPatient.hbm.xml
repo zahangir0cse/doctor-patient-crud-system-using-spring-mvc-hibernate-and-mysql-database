@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 10, 2017 4:54:20 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zahangir.model.ReleasedPatient" table="released_patient" catalog="restful_in_peace" optimistic-lock="version">
+        <id name="releasedPatientId" type="java.lang.Integer">
+            <column name="released_patient_id" />
+            <generator class="identity" />
+        </id>
+        <property name="releasedDate" type="date">
+            <column name="released_date" length="10" not-null="true" />
+        </property>
+        <property name="oldPatientId" type="int">
+            <column name="old_patient_id" not-null="true" />
+        </property>
+        <property name="oldPatientName" type="string">
+            <column name="old_patient_name" length="45" not-null="true" />
+        </property>
+        <property name="oldPatientAddress" type="string">
+            <column name="old_patient_address" length="45" not-null="true" />
+        </property>
+        <property name="oldPatientAge" type="int">
+            <column name="old_patient_age" not-null="true" />
+        </property>
+        <property name="oldPatientContactNo" type="string">
+            <column name="old_patient_contact_no" length="45" not-null="true" />
+        </property>
+        <property name="oldPatientEmail" type="string">
+            <column name="old_patient_email" length="45" not-null="true" />
+        </property>
+        <property name="oldPatientGender" type="string">
+            <column name="old_patient_gender" length="45" not-null="true" />
+        </property>
+        <property name="action" type="string">
+            <column name="action" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
