@@ -7,6 +7,7 @@ package com.zahangir.service;
 
 import com.zahangir.dao.PatientDao;
 import com.zahangir.model.Patient;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,18 @@ public class PatientServiceImpl implements PatientService{
     @Transactional
     public void removePatientById(int id) {
         patientDao.removePatientById(id);
+    }
+
+    @Override
+    @Transactional
+    public void updatePatient(Patient patient) {
+        patientDao.updatePatient(patient);
+    }
+
+    @Override
+    @Transactional
+    public List<Patient> patientList() {
+        return patientDao.patientList();
     }
     
 }
