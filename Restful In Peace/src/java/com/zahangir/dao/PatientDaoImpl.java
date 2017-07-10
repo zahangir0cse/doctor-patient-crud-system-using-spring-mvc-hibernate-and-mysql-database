@@ -36,11 +36,6 @@ public class PatientDaoImpl implements PatientDao{
     }
 
     @Override
-    public void updatePatient(Patient patient) {
-        sessionFactory.getCurrentSession().update(patient);
-    }
-
-    @Override
     public List<Patient> patientList() {
         return sessionFactory.getCurrentSession().createQuery("from Patient").list();
     }

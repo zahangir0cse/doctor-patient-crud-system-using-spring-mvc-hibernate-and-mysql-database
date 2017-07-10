@@ -36,12 +36,6 @@ public class PatientServiceImpl implements PatientService{
 
     @Override
     @Transactional
-    public void updatePatient(Patient patient) {
-        patientDao.updatePatient(patient);
-    }
-
-    @Override
-    @Transactional
     public List<Patient> patientList() {
         return patientDao.patientList();
     }

@@ -6,10 +6,12 @@ import com.zahangir.model.Patient;
 import com.zahangir.service.AdmissionService;
 import com.zahangir.service.PatientService;
 import java.util.Date;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,5 +41,18 @@ public class PatientController {
         }
         return "admission";
         
+    }
+    
+    @RequestMapping(value = "/allpatient", method = RequestMethod.POST)
+    public String listPatient(Map<String, Object> map){
+        map.put("patient", new Patient());
+        map.put("patientList", patientService.patientList());
+        return "listpatient";
+    }
+    
+    @RequestMapping(value = "/delete/{pid}")
+    public String deleteProduct(@PathVariable("pid") Integer pid){
+        patientService.removePatientById(pid);
+        return "redirect:listpatient";
     }
 }

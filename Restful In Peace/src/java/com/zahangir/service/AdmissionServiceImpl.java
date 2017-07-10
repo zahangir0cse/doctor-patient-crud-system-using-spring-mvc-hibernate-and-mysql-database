@@ -32,5 +32,11 @@ public class AdmissionServiceImpl implements AdmissionService{
     public void removeAdmissionById(int id) {
         admissionDao.removeAdmissionById(id);
     }
+
+    @Override
+    @Transactional
+    public Admission lastAdmission() {
+        return admissionDao.lastAdmission();
+    }
     
 }

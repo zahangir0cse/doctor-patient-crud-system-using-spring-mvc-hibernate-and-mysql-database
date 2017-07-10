@@ -32,5 +32,11 @@ public class AdmissionDaoImpl implements AdmissionDao{
             sessionFactory.getCurrentSession().delete(admission);
         }
     }
+
+    @Override
+    public Admission lastAdmission() {
+        Admission lastAdmission = (Admission) sessionFactory.getCurrentSession().createQuery("FROM Admission ORDER BY admissionId DESC").setMaxResults(1).uniqueResult();
+        return lastAdmission;
+    }
     
 }
