@@ -15,7 +15,7 @@
         <title><spring:message code="label.patientInfo"/></title>
     </head>
     <body>
-        <h3></h3>
+        <h3><spring:message code="label.patientHeading"/></h3>
         <c:url var="action" value="/admit"/>
         <form:form method="post" action="${action}" commandName="patient">
             <table>
