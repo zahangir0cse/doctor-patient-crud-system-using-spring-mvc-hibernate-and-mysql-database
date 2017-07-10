@@ -12,9 +12,80 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Patient info</title>
+        <title><spring:message code="label.patientInfo"/></title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3></h3>
+        <c:url var="action" value="/admit"/>
+        <form:form method="post" action="${action}" commandName="patient">
+            <table>
+                <tr>
+                    <td>
+                        <form:label path="patientName">
+                            <spring:message code="label.patientName"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="patientName"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="patientAge">
+                            <spring:message code="label.patientAge"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="patientAge"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="patientGender">
+                            <spring:message code="label.patientGender"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:radiobutton path="patientGender" value="Male"/>Male 
+                        <form:radiobutton path="patientGender" value="Female"/>Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="patientAddress">
+                            <spring:message code="label.patientAddress"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="patientAddress"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="patientContactNo">
+                            <spring:message code="label.patientContactNo"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="patientContactNo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="patientEmail">
+                            <spring:message code="label.patientEmail"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="patientEmail"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> 
+                            <input type="submit" value="<spring:message code="label.patientSubmit"/>"/>
+                    </td>
+                </tr>
+            </table>
+        </form:form>
     </body>
 </html>
