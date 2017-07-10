@@ -5,6 +5,9 @@
  */
 package com.zahangir.dao;
 
+import com.zahangir.model.Patient;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +16,22 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class PatientDaoImpl implements PatientDao{
+    
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @Override
+    public void addPatient(Patient p) {
+        sessionFactory.getCurrentSession().save(p);
+    }
+
+    @Override
+    public void removePatientById(int id) {
+        Patient patient = (Patient)sessionFactory.getCurrentSession().load(Patient.class, id);
+        
+        if (patient != null) {
+            sessionFactory.getCurrentSession().delete(patient);
+        }
+    }
     
 }
