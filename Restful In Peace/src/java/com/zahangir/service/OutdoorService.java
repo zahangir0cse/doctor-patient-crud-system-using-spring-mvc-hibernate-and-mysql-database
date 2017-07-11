@@ -6,6 +6,7 @@
 package com.zahangir.service;
 
 import com.zahangir.model.Outdoor;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import com.zahangir.model.Outdoor;
 public interface OutdoorService {
     void addOutdoor(Outdoor outdoor);
     void removeOutoorById(int id);
+    List<Object[]> getOutdoorPatientList();
 }

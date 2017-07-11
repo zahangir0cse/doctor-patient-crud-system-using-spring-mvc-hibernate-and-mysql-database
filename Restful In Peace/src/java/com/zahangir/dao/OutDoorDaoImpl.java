@@ -6,6 +6,7 @@
 package com.zahangir.dao;
 
 import com.zahangir.model.Outdoor;
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,8 @@ import org.springframework.stereotype.Repository;
  * @author Zahangir Alam
  */
 @Repository
-public class OutDoorDaoImpl implements OutDoorDao{
+public class OutDoorDaoImpl implements OutDoorDao {
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -27,9 +29,17 @@ public class OutDoorDaoImpl implements OutDoorDao{
     @Override
     public void removeOutoorById(int id) {
         Outdoor outdoor = (Outdoor) sessionFactory.getCurrentSession().load(Outdoor.class, id);
-        if (outdoor !=null) {
+        if (outdoor != null) {
             sessionFactory.getCurrentSession().delete(outdoor);
         }
     }
-    
+
+    @Override
+    public List<Object[]> getOutdoorPatientList() {
+        List<Object[]> outdoorPatientList = sessionFactory.getCurrentSession().createQuery("select o.outdoorId, "
+                + "p.patientName, p.patientAge, p.patientGender, p.patientContactNo from Outdoor o, "
+                + "Patient p where o.admission.patient.patientId = p.patientId").list();
+        return outdoorPatientList;
+    }
+
 }

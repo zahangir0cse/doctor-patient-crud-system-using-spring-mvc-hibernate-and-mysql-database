@@ -6,6 +6,7 @@
 package com.zahangir.dao;
 
 import com.zahangir.model.Indoor;
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,14 @@ public class IndoorDaoImpl implements IndoorDao{
         if (indoor !=null) {
             sessionFactory.getCurrentSession().delete(indoor);
         }
+    }
+
+    @Override
+    public List<Object[]> getIndoorPatientList() {
+        List<Object[]> indoorPatientList = sessionFactory.getCurrentSession().createQuery("select i.indoorId, "
+                + "i.indoorDepartment, p.patientName, p.patientAge, p.patientGender, p.patientContactNo from Indoor i, "
+                + "Patient p where i.admission.patient.patientId = p.patientId").list();
+        return indoorPatientList;
     }
     
 }

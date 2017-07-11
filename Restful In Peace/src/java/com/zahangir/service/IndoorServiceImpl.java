@@ -7,6 +7,7 @@ package com.zahangir.service;
 
 import com.zahangir.dao.IndoorDao;
 import com.zahangir.model.Indoor;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,12 @@ public class IndoorServiceImpl implements IndoorService{
     @Transactional
     public void removeInoorById(int id) {
         indoorDao.removeInoorById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Object[]> getIndoorPatientList() {
+        return indoorDao.getIndoorPatientList();
     }
     
 }

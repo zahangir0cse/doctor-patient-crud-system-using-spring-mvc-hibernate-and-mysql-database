@@ -6,6 +6,7 @@
 package com.zahangir.service;
 
 import com.zahangir.model.Indoor;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.zahangir.model.Indoor;
 public interface IndoorService {
     void addIndoor(Indoor indoor);
     void removeInoorById(int id);
+    List<Object[]> getIndoorPatientList();
     
 }

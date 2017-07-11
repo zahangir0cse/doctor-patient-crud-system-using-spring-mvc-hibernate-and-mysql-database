@@ -6,6 +6,7 @@
 package com.zahangir.dao;
 
 import com.zahangir.model.Outdoor;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import com.zahangir.model.Outdoor;
 public interface OutDoorDao {
     void addOutdoor(Outdoor outdoor);
     void removeOutoorById(int id);
+    List<Object[]> getOutdoorPatientList();
 }
