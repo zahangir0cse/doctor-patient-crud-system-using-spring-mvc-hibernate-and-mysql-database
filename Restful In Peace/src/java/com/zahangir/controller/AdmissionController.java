@@ -25,53 +25,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("admission")
 public class AdmissionController {
-    
-      @Autowired
+
+    @Autowired
     IndoorService indoorService;
 
     @Autowired
     OutdoorService outdoorService;
-    
+
     @Autowired
     AdmissionService admissionService;
-    
-    Outdoor outdoor = new Outdoor();
 
-    public Outdoor getOutdoor() {
-        return outdoor;
-    }
-
-    public void setOutdoor(Outdoor outdoor) {
-        this.outdoor = outdoor;
-    }
-    
-    
-    
     @RequestMapping(value = "/indoororoutdoor", method = RequestMethod.GET)
-    public String indoorOrOutdoor(@ModelAttribute("indoor") Indoor indoor, BindingResult result){
+    public String indoorOrOutdoor(@ModelAttribute("indoor") Indoor indoor, BindingResult result) {
         return "indoororoutdoor";
     }
-    
 
     @RequestMapping(value = "/selection", method = RequestMethod.POST)
     public String addIndoorPatient(@ModelAttribute("indoor") Indoor indoor, BindingResult result) {
         Admission admission = admissionService.lastAdmission();
-       //admission.setAdmissionId(admission.getAdmissionId());
+        //admission.setAdmissionId(admission.getAdmissionId());
         if (indoor.getIndoorDepartment() != null) {//This if block is ok
-            System.out.println("Hello I am here...");
+//            System.out.println("Hello I am here...");
             indoor.setAdmission(admission);
             indoor.setIndoorDepartment(indoor.getIndoorDepartment());
             indoorService.addIndoor(indoor);
             return "welcomeindoor";
         } else {
-            System.out.println("Hello I am out...");
-            setOutdoor(outdoor);
-            System.out.println(admission.getAdmissionId());//ok
-            System.out.println("Hello I am out...");//ok
-            outdoorService.addOutdoor(outdoor);//Problem
+            Outdoor outdoor = new Outdoor();
+//            System.out.println("Hello I am out...");
+            outdoor.setAdmission(admission);
+//            System.out.println(admission.getAdmissionId());//ok
+//            System.out.println("Hello I am out...");//ok
+            outdoorService.addOutdoor(outdoor);//solved
             return "welcomeoutdoor";
         }
-        
 
     }
 }

@@ -7,6 +7,7 @@ package com.zahangir.service;
 
 import com.zahangir.dao.OutDoorDao;
 import com.zahangir.model.Outdoor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OutdoorServiceImpl implements OutdoorService{
     
+    @Autowired
     private OutDoorDao outDoorDao;
 
     @Override
