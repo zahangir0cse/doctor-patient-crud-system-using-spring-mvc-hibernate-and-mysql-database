@@ -39,5 +39,11 @@ public class IndoorServiceImpl implements IndoorService{
     public List<Object[]> getIndoorPatientList() {
         return indoorDao.getIndoorPatientList();
     }
+
+    @Override
+    @Transactional
+    public void deleteIndoorByPatientId(int id) {
+        indoorDao.deleteIndoorByPatientId(id);
+    }
     
 }

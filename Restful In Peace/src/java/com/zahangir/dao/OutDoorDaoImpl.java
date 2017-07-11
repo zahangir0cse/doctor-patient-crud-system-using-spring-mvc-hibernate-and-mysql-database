@@ -42,4 +42,9 @@ public class OutDoorDaoImpl implements OutDoorDao {
         return outdoorPatientList;
     }
 
+    @Override
+    public void deleteOutdoorByPatientId(int id) {
+        sessionFactory.getCurrentSession().createQuery("DELETE from Outdoor o where o.admission.patient.patientId = '"+ id +"'");
+    }
+
 }

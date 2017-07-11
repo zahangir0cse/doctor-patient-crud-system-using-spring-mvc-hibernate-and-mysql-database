@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +44,7 @@ public class PatientController {
         
     }
     
-    @RequestMapping(value = "/allpatient", method = RequestMethod.POST)
+    @RequestMapping(value = "/allpatient", method = RequestMethod.GET)
     public String listPatient(Map<String, Object> map){
         map.put("patient", new Patient());
         map.put("patientList", patientService.patientList());
@@ -52,7 +53,14 @@ public class PatientController {
     
     @RequestMapping(value = "/delete/{pid}")
     public String deleteProduct(@PathVariable("pid") Integer pid){
+        
         patientService.removePatientById(pid);
         return "redirect:listpatient";
+    }
+    
+    @RequestMapping("/admin/check")
+    public String adminView(ModelMap map){
+        map.addAttribute("hello", "Hello Admin");
+        return "admin";
     }
 }

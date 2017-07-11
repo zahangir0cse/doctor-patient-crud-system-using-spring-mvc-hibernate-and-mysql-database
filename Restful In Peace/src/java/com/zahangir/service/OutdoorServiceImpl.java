@@ -39,5 +39,11 @@ public class OutdoorServiceImpl implements OutdoorService{
     public List<Object[]> getOutdoorPatientList() {
         return outDoorDao.getOutdoorPatientList();
     }
+
+    @Override
+    @Transactional
+    public void deleteOutdoorByPatientId(int id) {
+        outDoorDao.deleteOutdoorByPatientId(id);
+    }
     
 }

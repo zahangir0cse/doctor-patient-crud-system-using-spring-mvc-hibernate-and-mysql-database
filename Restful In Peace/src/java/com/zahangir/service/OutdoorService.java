@@ -16,4 +16,5 @@ public interface OutdoorService {
     void addOutdoor(Outdoor outdoor);
     void removeOutoorById(int id);
     List<Object[]> getOutdoorPatientList();
+    void deleteOutdoorByPatientId(int id);
 }

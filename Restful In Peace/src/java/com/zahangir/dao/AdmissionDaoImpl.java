@@ -38,5 +38,10 @@ public class AdmissionDaoImpl implements AdmissionDao{
         Admission lastAdmission = (Admission) sessionFactory.getCurrentSession().createQuery("FROM Admission ORDER BY admissionId DESC").setMaxResults(1).uniqueResult();
         return lastAdmission;
     }
+
+    @Override
+    public void deleteAdmissionByPatientId(int id) {
+        sessionFactory.getCurrentSession().createQuery("delete from Admission a where a.patient.patientId = '"+id+"'");
+    }
     
 }

@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +24,8 @@
         </script>
     </head>
     <body>
+        <a href="">Add Specialist</a>
+        <a href="">Add MI Doctor</a>
         <h3>List of Patient</h3>
     <c:if test="${!empty patientList}">
         <table border="1">
@@ -44,7 +49,7 @@
                     <td>${p.patientContactNo}</td>
                     <td>${p.patientEmail}</td>
                     <td>
-                        <a href="#" onclick="javascript:deleteProduct(${p.id})">Delete</a>
+                        <a href="#" onclick="javascript:deleteProduct(${p.patientId})">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
