@@ -24,12 +24,12 @@ public class MiController {
     @Autowired
     MiService miService;
     
-    @RequestMapping(value="/miinfo", method = RequestMethod.GET)
+    @RequestMapping(value="/mi/miinfo", method = RequestMethod.GET)
     public  String addPatient(@ModelAttribute("mi") Mi mi, BindingResult result){
         return "addmi";
     }
     
-    @RequestMapping(value = "/madd", method = RequestMethod.POST)
+    @RequestMapping(value = "/mi/madd", method = RequestMethod.POST)
     public String addAdmission(@ModelAttribute("mi") Mi mi, BindingResult result){
         if (mi.getMiId()== null) {
             miService.addMi(mi);

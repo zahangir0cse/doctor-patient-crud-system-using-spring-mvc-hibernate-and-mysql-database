@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 10, 2017 4:54:20 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.zahangir.model.Mi" table="mi" catalog="restful_in_peace" optimistic-lock="version">
         <id name="miId" type="java.lang.Integer">
             <column name="mi_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="outdoor" class="com.zahangir.model.Outdoor" fetch="select">
-            <column name="outdoor_id" not-null="true" />
-        </many-to-one>
         <property name="miName" type="string">
             <column name="mi_name" length="45" not-null="true" />
         </property>
@@ -29,5 +26,11 @@
         <property name="miEmail" type="string">
             <column name="mi_email" length="45" not-null="true" />
         </property>
+        <set name="outdoors" table="outdoor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mi_id" not-null="true" />
+            </key>
+            <one-to-many class="com.zahangir.model.Outdoor" />
+        </set>
     </class>
 </hibernate-mapping>

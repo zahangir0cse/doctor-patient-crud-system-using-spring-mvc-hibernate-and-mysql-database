@@ -12,11 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mi doctor</title>
+        <title>Specialist</title>
     </head>
     <body>
         <h3><spring:message code="label.specialistHeading"/></h3>
-        <c:url var="action" value="/specialist/add"/>
+        <c:url var="action" value="/specialist/sadd"/>
         <form:form method="post" action="${action}" commandName="specialist">
             <table>
                 <tr>
@@ -63,7 +63,7 @@
                 <tr>
                     <td>
                         <form:label path="specialistAddress">
-                            <spring:message code="label.pspecialistAddress"/>
+                            <spring:message code="label.specialistAddress"/>
                         </form:label>
                     </td>
                     <td>

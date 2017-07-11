@@ -16,7 +16,7 @@
     </head>
     <body>
         <h3><spring:message code="label.miHeading"/></h3>
-        <c:url var="action" value="/mi/add"/>
+        <c:url var="action" value="/mi/madd"/>
         <form:form method="post" action="${action}" commandName="mi">
             <table>
                 <tr>

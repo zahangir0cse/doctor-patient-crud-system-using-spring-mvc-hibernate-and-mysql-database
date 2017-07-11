@@ -23,12 +23,12 @@ public class SpecialistController {
     @Autowired
     SpecialistService specialistService;
     
-    @RequestMapping(value="/specialistinfo", method = RequestMethod.GET)
+    @RequestMapping(value="/specialist/specialistinfo", method = RequestMethod.GET)
     public  String addspecialist(@ModelAttribute("specialist") Specialist specialist, BindingResult result){
         return "addspecialist";
     }
     
-    @RequestMapping(value = "/sadd", method = RequestMethod.POST)
+    @RequestMapping(value = "specialist/sadd", method = RequestMethod.POST)
     public String addAdmission(@ModelAttribute("mi") Specialist specialist, BindingResult result){
         if (specialist.getSpecialistId()== null) {
             specialistService.addSpecialist(specialist);
