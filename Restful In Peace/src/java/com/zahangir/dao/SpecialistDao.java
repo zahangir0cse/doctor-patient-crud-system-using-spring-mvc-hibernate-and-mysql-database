@@ -17,4 +17,5 @@ public interface SpecialistDao {
     void removeSpecialistById(int id);
     void updateSpecialist(Specialist specialist);
     List<Specialist> getMiList();
+    Specialist getSpecialistByDepartment(String department);
 }

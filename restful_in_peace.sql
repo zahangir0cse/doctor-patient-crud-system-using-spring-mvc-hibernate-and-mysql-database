@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: restful_in_peace
 Target Host: localhost
 Target Database: restful_in_peace
-Date: 2017-07-12 05.23.01
+Date: 2017-07-12 18.52.26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,7 +19,7 @@ CREATE TABLE `admission` (
   PRIMARY KEY (`admission_id`),
   KEY `FK_admission_patient_id` (`patient_id`),
   CONSTRAINT `FK_admission_patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for indoor
@@ -30,12 +30,13 @@ CREATE TABLE `indoor` (
   `indoor_department` varchar(45) NOT NULL,
   `admission_id` int(10) unsigned NOT NULL,
   `specialist_id` int(10) unsigned NOT NULL,
+  `indoor_type` varchar(45) NOT NULL,
   PRIMARY KEY (`indoor_id`),
   KEY `FK_indoor_admission_id` (`admission_id`),
   KEY `FK_indoor_specialist_id` (`specialist_id`),
   CONSTRAINT `FK_indoor_admission_id` FOREIGN KEY (`admission_id`) REFERENCES `admission` (`admission_id`),
   CONSTRAINT `FK_indoor_specialist_id` FOREIGN KEY (`specialist_id`) REFERENCES `specialist` (`specialist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for mi
@@ -49,6 +50,7 @@ CREATE TABLE `mi` (
   `mi_gender` varchar(45) NOT NULL,
   `mi_contact_no` varchar(45) NOT NULL,
   `mi_email` varchar(45) NOT NULL,
+  `mi_time` varchar(45) NOT NULL,
   PRIMARY KEY (`mi_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -60,12 +62,13 @@ CREATE TABLE `outdoor` (
   `outdoor_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `admission_id` int(10) unsigned NOT NULL,
   `mi_id` int(10) unsigned NOT NULL,
+  `outdoor_time` varchar(45) NOT NULL,
   PRIMARY KEY (`outdoor_id`),
   KEY `FK_outdoor_admission_id` (`admission_id`),
   KEY `FK_outdoor_mi_id` (`mi_id`),
   CONSTRAINT `FK_outdoor_admission_id` FOREIGN KEY (`admission_id`) REFERENCES `admission` (`admission_id`),
   CONSTRAINT `FK_outdoor_mi_id` FOREIGN KEY (`mi_id`) REFERENCES `mi` (`mi_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for patient
@@ -80,7 +83,7 @@ CREATE TABLE `patient` (
   `patient_contact_no` varchar(45) NOT NULL,
   `patient_email` varchar(45) NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for released_patient
@@ -98,7 +101,7 @@ CREATE TABLE `released_patient` (
   `old_patient_gender` varchar(45) NOT NULL,
   `action` varchar(45) NOT NULL,
   PRIMARY KEY (`released_patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for specialist
@@ -114,38 +117,36 @@ CREATE TABLE `specialist` (
   `specialist_gender` varchar(45) NOT NULL,
   `specialist_email` varchar(45) NOT NULL,
   PRIMARY KEY (`specialist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `admission` VALUES ('1', '1', '2017-07-10');
-INSERT INTO `admission` VALUES ('2', '2', '2017-07-10');
-INSERT INTO `admission` VALUES ('3', '3', '2017-07-10');
-INSERT INTO `admission` VALUES ('4', '4', '2017-07-11');
-INSERT INTO `admission` VALUES ('5', '5', '2017-07-11');
-INSERT INTO `admission` VALUES ('8', '8', '2017-07-11');
-INSERT INTO `admission` VALUES ('10', '10', '2017-07-11');
-INSERT INTO `admission` VALUES ('11', '11', '2017-07-11');
-INSERT INTO `admission` VALUES ('12', '12', '2017-07-11');
-INSERT INTO `admission` VALUES ('13', '13', '2017-07-11');
-INSERT INTO `admission` VALUES ('14', '14', '2017-07-11');
-INSERT INTO `mi` VALUES ('1', 'mi1', 'MBBS', 'Dhaka', 'Male', '03893232892', 'mi1@mi.com');
-INSERT INTO `patient` VALUES ('1', 'Abc', '23', 'Male', 'Dhaka', '01677700090', 'abc@abc.com');
-INSERT INTO `patient` VALUES ('2', 'Abc', '23', 'Male', 'Dhaka', '01677700090', 'abc@abc.com');
-INSERT INTO `patient` VALUES ('3', 'Abc2', '12', 'Male', 'Dhaka', '01677700091', 'abc2@abc.com');
-INSERT INTO `patient` VALUES ('4', 'Abc4', '43', 'Male', 'Dhaka', '01677700094', 'abc4@abc.com');
-INSERT INTO `patient` VALUES ('5', 'Abc4', '43', 'Male', 'Dhaka', '01677700094', 'abc4@abc.com');
-INSERT INTO `patient` VALUES ('8', 'Abc4', '0', 'Male', 'Dhaka', '01677700090', 'abc@abc.com');
-INSERT INTO `patient` VALUES ('10', 'Abc4', '44', 'Male', 'Dhaka', '01677700090', 'abc2@abc.com');
-INSERT INTO `patient` VALUES ('11', 'Abc', '12', 'Female', 'Dhaka', '01677700090', 'abc2@abc.com');
-INSERT INTO `patient` VALUES ('12', 'Habib', '27', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
-INSERT INTO `patient` VALUES ('13', 'Maruf', '27', 'Male', 'Dhaka', '01677700090', 'maruf@gmail.com');
-INSERT INTO `patient` VALUES ('14', 'Mahmud', '20', 'Male', 'Dhaka', '01677700090', 'mahmud@gmail.com');
-INSERT INTO `released_patient` VALUES ('2', '2017-07-12', '7', 'Abc4', 'Dhaka', '22', '01677700090', 'abc2@abc.com', 'Male', 'delete');
-INSERT INTO `released_patient` VALUES ('3', '2017-07-12', '9', 'Abc4', 'Dhaka', '22', '01677700091', 'abc@abc.com', 'Female', 'delete');
-INSERT INTO `released_patient` VALUES ('4', '2017-07-12', '6', 'Abc4', 'Dhaka', '43', '01677700094', 'abc4@abc.com', 'Male', 'delete');
+INSERT INTO `admission` VALUES ('16', '16', '2017-07-12');
+INSERT INTO `admission` VALUES ('17', '17', '2017-07-12');
+INSERT INTO `admission` VALUES ('18', '18', '2017-07-12');
+INSERT INTO `admission` VALUES ('19', '19', '2017-07-12');
+INSERT INTO `admission` VALUES ('20', '20', '2017-07-12');
+INSERT INTO `admission` VALUES ('21', '21', '2017-07-12');
+INSERT INTO `admission` VALUES ('22', '22', '2017-07-12');
+INSERT INTO `admission` VALUES ('23', '23', '2017-07-12');
+INSERT INTO `indoor` VALUES ('1', 'Surgery-General', '16', '2', 'PRIVATE ROOM');
+INSERT INTO `mi` VALUES ('1', 'mi1', 'MBBS', 'Dhaka', 'Male', '03893232892', 'mi1@mi.com', '2 to 7 pm');
+INSERT INTO `outdoor` VALUES ('1', '23', '1', '2 to 7 pm');
+INSERT INTO `patient` VALUES ('16', 'Mahmud', '18', 'Male', 'Dhaka', '01730277223', 'aanniiss112233@gmail.com');
+INSERT INTO `patient` VALUES ('17', 'Habib', '27', 'Male', 'Dhaka', '01677700094', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('18', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('19', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('20', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('21', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('22', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
+INSERT INTO `patient` VALUES ('23', 'Habib', '22', 'Male', 'Dhaka', '01677700090', 'habib@gmail.com');
 INSERT INTO `specialist` VALUES ('1', 'xyz', 'PhD', 'Pharmacist', 'Dhaka', '8272881189', 'Male', 'xyz@xzy.com');
+INSERT INTO `specialist` VALUES ('2', 'Rajib Ahmed', 'PhD', 'Surgery-General', 'Dhaka, Bangladesh', '01677000000', 'Male', 'rajib@gmail.com');
+INSERT INTO `specialist` VALUES ('3', 'Hasan Ahmed', 'PhD', 'Radiation Oncology', 'Dhaka, Bangladesh', '01677000001', 'Male', 'hasan@gmail.com');
+INSERT INTO `specialist` VALUES ('4', 'Shahidur Alam', 'PhD', 'Dermatology', 'Dhaka, Bangladesh', '01677000002', 'Male', 'shahid@gmail.com');
+INSERT INTO `specialist` VALUES ('5', 'Hamidur Rahaman', 'PhD', 'Pain Medicine', 'Dhaka, Bangladesh', '01677000003', 'Male', 'hamidur@gmail.com');
+INSERT INTO `specialist` VALUES ('6', 'Rashedul Kabir', 'PhD', 'Abdominal Radiology', 'Dhaka, Bangladesh', '01677000004', 'Male', 'rashedul@gmail.com');
 
 -- ----------------------------
 -- Trigger structure for patient_before_delete

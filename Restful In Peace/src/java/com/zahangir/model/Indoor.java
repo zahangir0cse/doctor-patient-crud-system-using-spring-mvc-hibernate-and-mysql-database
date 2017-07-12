@@ -1,5 +1,5 @@
 package com.zahangir.model;
-// Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1
+// Generated Jul 12, 2017 5:29:19 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.Entity;
 
@@ -17,14 +17,16 @@ public class Indoor  implements java.io.Serializable {
      private Admission admission;
      private Specialist specialist;
      private String indoorDepartment;
+     private String indoorType;
 
     public Indoor() {
     }
 
-    public Indoor(Admission admission, Specialist specialist, String indoorDepartment) {
+    public Indoor(Admission admission, Specialist specialist, String indoorDepartment, String indoorType) {
        this.admission = admission;
        this.specialist = specialist;
        this.indoorDepartment = indoorDepartment;
+       this.indoorType = indoorType;
     }
    
     public Integer getIndoorId() {
@@ -54,6 +56,13 @@ public class Indoor  implements java.io.Serializable {
     
     public void setIndoorDepartment(String indoorDepartment) {
         this.indoorDepartment = indoorDepartment;
+    }
+    public String getIndoorType() {
+        return this.indoorType;
+    }
+    
+    public void setIndoorType(String indoorType) {
+        this.indoorType = indoorType;
     }
 
 

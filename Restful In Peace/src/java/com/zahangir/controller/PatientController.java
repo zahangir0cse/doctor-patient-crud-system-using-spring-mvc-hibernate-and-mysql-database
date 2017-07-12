@@ -4,6 +4,8 @@ package com.zahangir.controller;
 import com.zahangir.model.Admission;
 import com.zahangir.model.Patient;
 import com.zahangir.service.AdmissionService;
+import com.zahangir.service.IndoorService;
+import com.zahangir.service.OutdoorService;
 import com.zahangir.service.PatientService;
 import java.util.Date;
 import java.util.Map;
@@ -24,6 +26,12 @@ public class PatientController {
     
     @Autowired
     AdmissionService admissionService;
+    
+    @Autowired
+    IndoorService indoorService;
+    
+    @Autowired
+    OutdoorService outdoorService;
     
     @RequestMapping(value="/", method = RequestMethod.GET)
     public  String addPatient(@ModelAttribute("patient") Patient patient, BindingResult result){
@@ -53,7 +61,12 @@ public class PatientController {
     
     @RequestMapping(value = "/delete/{pid}")
     public String deleteProduct(@PathVariable("pid") Integer pid){
-        
+        if (indoorService.getIndoorByPatientId(pid) != null) {
+            indoorService.deleteIndoorByPatientId(pid);
+        }else{
+            outdoorService.deleteOutdoorByPatientId(pid);
+        }
+        admissionService.deleteAdmissionByPatientId(pid);
         patientService.removePatientById(pid);
         return "redirect:listpatient";
     }

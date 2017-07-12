@@ -81,6 +81,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <form:label path="miTime">
+                            <spring:message code="label.miTime"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:select path="miTime">
+                            <form:option value="" label="----Select Time----"/>
+                            <form:options items="${timeList}"/>
+                        </form:select>
+                    </td>
+                </tr>
+                <tr>
                     <td> 
                             <input type="submit" value="<spring:message code="label.miSubmit"/>"/>
                     </td>

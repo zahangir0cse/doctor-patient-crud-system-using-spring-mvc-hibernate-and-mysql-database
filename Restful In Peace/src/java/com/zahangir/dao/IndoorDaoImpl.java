@@ -46,5 +46,11 @@ public class IndoorDaoImpl implements IndoorDao{
     public void deleteIndoorByPatientId(int id) {
         sessionFactory.getCurrentSession().createQuery("delete from Indoor i where i.admission.patient.patientId ='"+id+"'");
     }
+
+    @Override
+    public Indoor getIndoorByPatientId(int id) {
+        Indoor indoor = (Indoor)sessionFactory.getCurrentSession().createQuery("FROM Indoor i where i.admission.patient.patientId='"+id+"'").uniqueResult();
+        return indoor;
+    }
     
 }

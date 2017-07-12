@@ -17,4 +17,5 @@ public interface IndoorDao {
     void removeInoorById(int id);
     List<Object[]> getIndoorPatientList();
     void deleteIndoorByPatientId(int id);
+    Indoor getIndoorByPatientId(int id);
 }

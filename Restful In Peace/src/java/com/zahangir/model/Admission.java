@@ -1,5 +1,5 @@
 package com.zahangir.model;
-// Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1
+// Generated Jul 12, 2017 5:29:19 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

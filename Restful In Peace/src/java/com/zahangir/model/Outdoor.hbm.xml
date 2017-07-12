@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jul 12, 2017 5:29:20 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.zahangir.model.Outdoor" table="outdoor" catalog="restful_in_peace" optimistic-lock="version">
         <id name="outdoorId" type="java.lang.Integer">
@@ -14,5 +14,8 @@
         <many-to-one name="mi" class="com.zahangir.model.Mi" fetch="select">
             <column name="mi_id" not-null="true" />
         </many-to-one>
+        <property name="outdoorTime" type="string">
+            <column name="outdoor_time" length="45" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

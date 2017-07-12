@@ -16,5 +16,6 @@ public interface MiService {
     void addMi(Mi mi);
     void removeMiById(int id);
     void updateMi(Mi mi);
-    List<Mi> getMiList(); 
+    List<Mi> getMiList();
+    Mi getMiByTime(String time);
 }

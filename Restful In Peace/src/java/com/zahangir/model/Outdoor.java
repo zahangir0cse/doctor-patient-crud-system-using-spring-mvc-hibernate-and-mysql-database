@@ -1,5 +1,5 @@
 package com.zahangir.model;
-// Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1
+// Generated Jul 12, 2017 5:29:19 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.Entity;
 
@@ -16,13 +16,15 @@ public class Outdoor  implements java.io.Serializable {
      private Integer outdoorId;
      private Admission admission;
      private Mi mi;
+     private String outdoorTime;
 
     public Outdoor() {
     }
 
-    public Outdoor(Admission admission, Mi mi) {
+    public Outdoor(Admission admission, Mi mi, String outdoorTime) {
        this.admission = admission;
        this.mi = mi;
+       this.outdoorTime = outdoorTime;
     }
    
     public Integer getOutdoorId() {
@@ -45,6 +47,13 @@ public class Outdoor  implements java.io.Serializable {
     
     public void setMi(Mi mi) {
         this.mi = mi;
+    }
+    public String getOutdoorTime() {
+        return this.outdoorTime;
+    }
+    
+    public void setOutdoorTime(String outdoorTime) {
+        this.outdoorTime = outdoorTime;
     }
 
 

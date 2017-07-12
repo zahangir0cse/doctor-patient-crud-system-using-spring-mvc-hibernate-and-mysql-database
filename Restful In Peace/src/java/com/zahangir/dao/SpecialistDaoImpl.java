@@ -44,5 +44,11 @@ public class SpecialistDaoImpl implements SpecialistDao{
         List<Specialist> specialistList = sessionFactory.getCurrentSession().createQuery("from Specialist").list();
         return specialistList;
     }
+
+    @Override
+    public Specialist getSpecialistByDepartment(String department) {
+        Specialist specialist = (Specialist) sessionFactory.getCurrentSession().createQuery("from Specialist s where s.specialistSpeialty ='"+ department +"'").uniqueResult();
+        return specialist;
+    }
     
 }

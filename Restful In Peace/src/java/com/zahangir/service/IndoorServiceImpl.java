@@ -45,5 +45,11 @@ public class IndoorServiceImpl implements IndoorService{
     public void deleteIndoorByPatientId(int id) {
         indoorDao.deleteIndoorByPatientId(id);
     }
+
+    @Override
+    @Transactional
+    public Indoor getIndoorByPatientId(int id) {
+        return indoorDao.getIndoorByPatientId(id);
+    }
     
 }

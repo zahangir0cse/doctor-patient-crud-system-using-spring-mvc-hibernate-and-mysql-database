@@ -1,5 +1,5 @@
 package com.zahangir.model;
-// Generated Jul 12, 2017 4:56:57 AM by Hibernate Tools 4.3.1
+// Generated Jul 12, 2017 5:29:19 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,27 +20,30 @@ public class Mi  implements java.io.Serializable {
      private String miGender;
      private String miContactNo;
      private String miEmail;
+     private String miTime;
      private Set outdoors = new HashSet(0);
 
     public Mi() {
     }
 
 	
-    public Mi(String miName, String miQualification, String miAddress, String miGender, String miContactNo, String miEmail) {
+    public Mi(String miName, String miQualification, String miAddress, String miGender, String miContactNo, String miEmail, String miTime) {
         this.miName = miName;
         this.miQualification = miQualification;
         this.miAddress = miAddress;
         this.miGender = miGender;
         this.miContactNo = miContactNo;
         this.miEmail = miEmail;
+        this.miTime = miTime;
     }
-    public Mi(String miName, String miQualification, String miAddress, String miGender, String miContactNo, String miEmail, Set outdoors) {
+    public Mi(String miName, String miQualification, String miAddress, String miGender, String miContactNo, String miEmail, String miTime, Set outdoors) {
        this.miName = miName;
        this.miQualification = miQualification;
        this.miAddress = miAddress;
        this.miGender = miGender;
        this.miContactNo = miContactNo;
        this.miEmail = miEmail;
+       this.miTime = miTime;
        this.outdoors = outdoors;
     }
    
@@ -92,6 +95,13 @@ public class Mi  implements java.io.Serializable {
     
     public void setMiEmail(String miEmail) {
         this.miEmail = miEmail;
+    }
+    public String getMiTime() {
+        return this.miTime;
+    }
+    
+    public void setMiTime(String miTime) {
+        this.miTime = miTime;
     }
     public Set getOutdoors() {
         return this.outdoors;

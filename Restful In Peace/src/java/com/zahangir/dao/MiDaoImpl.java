@@ -44,5 +44,11 @@ public class MiDaoImpl implements MiDao{
         List<Mi> miList = sessionFactory.getCurrentSession().createQuery("from Mi").list();
         return miList;
     }
+
+    @Override
+    public Mi getMiByTime(String time) {
+        Mi mi = (Mi)sessionFactory.getCurrentSession().createQuery("from Mi m where m.miTime='"+time+"'").uniqueResult();
+        return mi;
+    }
     
 }

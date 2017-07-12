@@ -41,11 +41,11 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="restful_in_peace"/>
-  <table-filter match-name="released_patient"/>
   <table-filter match-name="outdoor"/>
-  <table-filter match-name="specialist"/>
-  <table-filter match-name="indoor"/>
-  <table-filter match-name="admission"/>
   <table-filter match-name="mi"/>
+  <table-filter match-name="admission"/>
+  <table-filter match-name="released_patient"/>
   <table-filter match-name="patient"/>
+  <table-filter match-name="indoor"/>
+  <table-filter match-name="specialist"/>
 </hibernate-reverse-engineering>

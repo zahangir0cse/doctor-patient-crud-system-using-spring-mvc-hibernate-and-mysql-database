@@ -17,4 +17,5 @@ public interface MiDao {
     void removeMiById(int id);
     void updateMi(Mi mi);
     List<Mi> getMiList();
+    Mi getMiByTime(String time);
 }

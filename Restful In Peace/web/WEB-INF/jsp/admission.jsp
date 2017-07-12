@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Your admission for our hospital is completed</h1>
-        <p>Now <a href="admission/indoororoutdoor">Click here to choose indoor or outdoor</a></p>
+        <p>Now <a href="admission/indoor">Click here to go for indoor treatment</a></p>
+        <p>or, <a href="admission/outdoor">Click here to to go for outdoor treatment</a></p>
     </body>
 </html>
