@@ -62,13 +62,15 @@ public class PatientController {
     @RequestMapping(value = "/delete/{pid}")
     public String deleteProduct(@PathVariable("pid") Integer pid){
         if (indoorService.getIndoorByPatientId(pid) != null) {
+            System.out.println("Hello i am here");
             indoorService.deleteIndoorByPatientId(pid);
         }else{
+            System.out.println("Hello i am here");
             outdoorService.deleteOutdoorByPatientId(pid);
         }
         admissionService.deleteAdmissionByPatientId(pid);
         patientService.removePatientById(pid);
-        return "redirect:listpatient";
+        return "redirect:/allpatient";
     }
     
     @RequestMapping("/admin/check")

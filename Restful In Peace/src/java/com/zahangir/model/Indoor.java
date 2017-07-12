@@ -2,6 +2,7 @@ package com.zahangir.model;
 // Generated Jul 12, 2017 5:29:19 PM by Hibernate Tools 4.3.1
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 
 
@@ -14,7 +15,9 @@ public class Indoor  implements java.io.Serializable {
 
 
      private Integer indoorId;
+    @OneToOne(orphanRemoval = true)
      private Admission admission;
+    @OneToOne(orphanRemoval = true)
      private Specialist specialist;
      private String indoorDepartment;
      private String indoorType;

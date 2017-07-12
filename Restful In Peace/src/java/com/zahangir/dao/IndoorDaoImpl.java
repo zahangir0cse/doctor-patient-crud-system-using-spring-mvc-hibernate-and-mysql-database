@@ -7,6 +7,7 @@ package com.zahangir.dao;
 
 import com.zahangir.model.Indoor;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,7 +45,9 @@ public class IndoorDaoImpl implements IndoorDao{
 
     @Override
     public void deleteIndoorByPatientId(int id) {
-        sessionFactory.getCurrentSession().createQuery("delete from Indoor i where i.admission.patient.patientId ='"+id+"'");
+        Query query = sessionFactory.getCurrentSession().createQuery("delete i from Indoor i where i.admission.patient.patientId =:pid");
+        query.setParameter("pid", id);
+        query.executeUpdate();
     }
 
     @Override

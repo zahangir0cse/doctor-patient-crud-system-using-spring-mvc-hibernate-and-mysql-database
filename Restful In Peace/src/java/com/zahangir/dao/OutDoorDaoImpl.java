@@ -7,6 +7,7 @@ package com.zahangir.dao;
 
 import com.zahangir.model.Outdoor;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,7 +45,10 @@ public class OutDoorDaoImpl implements OutDoorDao {
 
     @Override
     public void deleteOutdoorByPatientId(int id) {
-        sessionFactory.getCurrentSession().createQuery("DELETE from Outdoor o where o.admission.patient.patientId = '"+ id +"'");
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE from Outdoor o where o.admission.admissionId in "
+                + "(select a from Admission a where a.patient.patientId in (select p from Patient p where p.patientId =:pid))");
+        query.setParameter("pid", id);
+        query.executeUpdate();
     }
 
 }

@@ -6,6 +6,7 @@
 package com.zahangir.dao;
 
 import com.zahangir.model.Admission;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,7 +42,12 @@ public class AdmissionDaoImpl implements AdmissionDao{
 
     @Override
     public void deleteAdmissionByPatientId(int id) {
-        sessionFactory.getCurrentSession().createQuery("delete from Admission a where a.patient.patientId = '"+id+"'");
+        System.out.println("delete");
+        Query query = sessionFactory.getCurrentSession().createQuery("delete from Admission a where a.patient.patientId in (select "
+                + "p from Patient p where p.patientId =:pid)");
+        query.setParameter("pid", id);
+        query.executeUpdate();
+        System.out.println("delete 3");
     }
     
 }
