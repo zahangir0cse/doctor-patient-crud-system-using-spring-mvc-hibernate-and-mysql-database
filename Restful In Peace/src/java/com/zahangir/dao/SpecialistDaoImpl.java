@@ -40,7 +40,7 @@ public class SpecialistDaoImpl implements SpecialistDao{
     }
 
     @Override
-    public List<Specialist> getMiList() {
+    public List<Specialist> getSpecialistList() {
         List<Specialist> specialistList = sessionFactory.getCurrentSession().createQuery("from Specialist").list();
         return specialistList;
     }
@@ -49,6 +49,12 @@ public class SpecialistDaoImpl implements SpecialistDao{
     public Specialist getSpecialistByDepartment(String department) {
         Specialist specialist = (Specialist) sessionFactory.getCurrentSession().createQuery("from Specialist s where s.specialistSpeialty ='"+ department +"'").uniqueResult();
         return specialist;
+    }
+
+    @Override
+    public Specialist getSpecialistById(int id) {
+        List<Specialist> list = sessionFactory.getCurrentSession().createQuery("from Specialist s where s.specialistId=:sid").setParameter("sid", id).list();
+        return list.size()>0?(Specialist) list.get(0): null;
     }
     
 }

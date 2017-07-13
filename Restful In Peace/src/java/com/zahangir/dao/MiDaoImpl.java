@@ -36,7 +36,9 @@ public class MiDaoImpl implements MiDao{
 
     @Override
     public void updateMi(Mi mi) {
-        sessionFactory.getCurrentSession().update(mi);
+        System.out.println("Hello i am here dao");
+        sessionFactory.getCurrentSession().saveOrUpdate(mi);
+        System.out.println("Hello i am here dao 2");
     }
 
     @Override
@@ -49,6 +51,12 @@ public class MiDaoImpl implements MiDao{
     public Mi getMiByTime(String time) {
         Mi mi = (Mi)sessionFactory.getCurrentSession().createQuery("from Mi m where m.miTime='"+time+"'").uniqueResult();
         return mi;
+    }
+
+    @Override
+    public Mi getMiById(int id) {
+        List<Mi> list = sessionFactory.getCurrentSession().createQuery("from Mi m where m.miId=:mid").setParameter("mid", id).list();
+        return list.size()>0?(Mi) list.get(0): null;
     }
     
 }

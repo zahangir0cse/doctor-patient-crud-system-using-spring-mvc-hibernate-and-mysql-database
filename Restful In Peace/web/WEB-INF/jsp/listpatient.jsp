@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Patient</title>
         <script>
-            function deleteProduct(pid){
+            function deletePatient(pid){
                 if (confirm('Do you really want to delete this patient?')) {
                     var url = 'delete/'+pid;
                     window.location.href=url;
@@ -24,8 +24,6 @@
         </script>
     </head>
     <body>
-        <a href="">Add Specialist</a>
-        <a href="">Add MI Doctor</a>
         <h3>List of Patient</h3>
     <c:if test="${!empty patientList}">
         <table border="1">
@@ -49,7 +47,7 @@
                     <td>${p.patientContactNo}</td>
                     <td>${p.patientEmail}</td>
                     <td>
-                        <a href="#" onclick="javascript:deleteProduct(${p.patientId})">Delete</a>
+                        <a href="#" onclick="javascript:deletePatient(${p.patientId})">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

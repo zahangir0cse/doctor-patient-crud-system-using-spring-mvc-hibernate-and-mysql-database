@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,24 +21,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Zahangir Alam
  */
-@Controller("mi")
+@Controller
 public class MiController {
 
     @Autowired
     MiService miService;
 
     @RequestMapping(value = "/mi/miinfo", method = RequestMethod.GET)
-    public String addPatient(@ModelAttribute("mi") Mi mi, BindingResult result) {
+    public String addMiView(@ModelAttribute("mi") Mi mi, BindingResult result) {
         return "addmi";
     }
 
     @RequestMapping(value = "/mi/madd", method = RequestMethod.POST)
-    public String addAdmission(@ModelAttribute("mi") Mi mi, BindingResult result) {
+    public String addMi(@ModelAttribute("mi") Mi mi, BindingResult result) {
         if (mi.getMiId() == null) {
             miService.addMi(mi);
         }
-        return "milist";
+        return "redirect:/mi/allmi";
 
+    }
+
+    @RequestMapping(value = "/mi/medit", method = RequestMethod.POST)
+    public String editMi(@ModelAttribute("mi") Mi mi, BindingResult result) {
+        if (mi.getMiId() != null) {
+            System.out.println("Hello i am here");
+            miService.updateMi(mi);
+            System.out.println("Hello i am here");
+        }
+        return "redirect:/mi/allmi";
     }
 
     @ModelAttribute("timeList")
@@ -48,5 +59,25 @@ public class MiController {
         timeList.put("5 to 7 pm", "5 to 7 pm");
         timeList.put("10 am to 12 noon", "10 am to 12 noon");
         return timeList;
+    }
+
+    @RequestMapping(value = "/mi/allmi", method = RequestMethod.GET)
+    public String listMi(Map<String, Object> map) {
+        map.put("mi", new Mi());
+        map.put("miList", miService.getMiList());
+        return "milist";
+    }
+
+    @RequestMapping(value = "/mi/delete/{mid}")
+    public String deleteMi(@PathVariable("mid") Integer mid) {
+        miService.removeMiById(mid);
+        return "redirect:/mi/allmi";
+    }
+
+    @RequestMapping(value = "/mi/edit/{mid}")
+    public String editProduct(@PathVariable("mid") Integer mid, Map<String, Object> map) {
+        map.put("mi", miService.getMiById(mid));
+        map.put("miList", miService.getMiList());
+        return "editmi";
     }
 }

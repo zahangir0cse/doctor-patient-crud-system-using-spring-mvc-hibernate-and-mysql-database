@@ -51,5 +51,11 @@ public class MiServiceImpl implements MiService{
     public Mi getMiByTime(String time) {
         return miDao.getMiByTime(time);
     }
+
+    @Override
+    @Transactional
+    public Mi getMiById(int id) {
+        return miDao.getMiById(id);
+    }
     
 }

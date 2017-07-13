@@ -42,14 +42,20 @@ public class SpecialistServiceImpl implements SpecialistService{
 
     @Override
     @Transactional
-    public List<Specialist> getMiList() {
-        return specialistDao.getMiList();
+    public List<Specialist> getSpecialistList() {
+        return specialistDao.getSpecialistList();
     }
 
     @Override
     @Transactional
     public Specialist getSpecialistByDepartment(String department) {
         return specialistDao.getSpecialistByDepartment(department);
+    }
+
+    @Override
+    @Transactional
+    public Specialist getSpecialistById(int id) {
+        return specialistDao.getSpecialistById(id);
     }
     
 }

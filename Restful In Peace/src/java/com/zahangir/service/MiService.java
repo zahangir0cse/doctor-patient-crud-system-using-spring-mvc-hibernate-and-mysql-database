@@ -18,4 +18,5 @@ public interface MiService {
     void updateMi(Mi mi);
     List<Mi> getMiList();
     Mi getMiByTime(String time);
+    Mi getMiById(int id);
 }

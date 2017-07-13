@@ -24,7 +24,7 @@ public class Mi  implements java.io.Serializable {
      private String miContactNo;
      private String miEmail;
      private String miTime;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true, mappedBy="Mi")
+     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true, mappedBy="mi")
      private Set<Outdoor> outdoors = new HashSet(0);
 
     public Mi() {
@@ -107,16 +107,13 @@ public class Mi  implements java.io.Serializable {
     public void setMiTime(String miTime) {
         this.miTime = miTime;
     }
-    public Set getOutdoors() {
+    public Set<Outdoor> getOutdoors() {
         return this.outdoors;
     }
     
-    public void setOutdoors(Set outdoors) {
+    public void setOutdoors(Set<Outdoor> outdoors) {
         this.outdoors = outdoors;
     }
-
-
-
 
 }
 

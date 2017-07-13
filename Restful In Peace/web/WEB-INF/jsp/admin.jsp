@@ -16,7 +16,7 @@
         <a href="/Restful_In_Peace/specialist/specialistinfo">add Specialist</a><br>
         <a href="/Restful_In_Peace/mi/miinfo">add MI Doctor</a><br>
         <a href="/Restful_In_Peace/allpatient">Patient list</a><br>
-        <a href="">Specialist list</a><br>
-        <a href="">MI Doctor list</a>
+        <a href="/Restful_In_Peace/specialist/allsp">Specialist list</a><br>
+        <a href="/Restful_In_Peace/mi/allmi">MI Doctor list</a>
     </body>
 </html>

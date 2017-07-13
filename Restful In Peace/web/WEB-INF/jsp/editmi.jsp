@@ -16,9 +16,19 @@
     </head>
     <body>
         <h3><spring:message code="label.miHeading"/></h3>
-        <c:url var="action" value="/mi/madd"/>
+        <c:url var="action" value="/mi/medit"/>
         <form:form method="post" action="${action}" commandName="mi">
             <table>
+                    <tr>
+                        <td>
+                            <form:label path="miId">
+                                <spring:message code="label.miId"/>
+                            </form:label>
+                        </td>
+                        <td>
+                            <form:input path="miId"/>
+                        </td>
+                    </tr>
                 <tr>
                     <td>
                         <form:label path="miName">
@@ -94,8 +104,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="submit" value="<spring:message code="label.miSubmit"/>"/>
+                    <td> 
+                        <input type="submit" value="<spring:message code="label.editMi"/>"/>
                     </td>
                 </tr>
             </table>
