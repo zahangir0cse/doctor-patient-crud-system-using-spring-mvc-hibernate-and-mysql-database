@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,11 +70,5 @@ public class PatientController {
         admissionService.deleteAdmissionByPatientId(pid);
         patientService.removePatientById(pid);
         return "redirect:/allpatient";
-    }
-    
-    @RequestMapping("/admin/check")
-    public String adminView(ModelMap map){
-        map.addAttribute("hello", "Hello Admin");
-        return "admin";
     }
 }
