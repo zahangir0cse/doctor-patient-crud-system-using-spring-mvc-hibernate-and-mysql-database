@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2017 3:08:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.zahangir.model.User" table="user" catalog="restful_in_peace" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" length="45" not-null="true" />
+        </property>
+        <property name="userRole" type="string">
+            <column name="user_role" length="45" not-null="true" />
+        </property>
+        <property name="userEmail" type="string">
+            <column name="user_email" length="45" not-null="true" />
+        </property>
+        <property name="userContactNo" type="string">
+            <column name="user_contact_no" length="45" not-null="true" />
+        </property>
+        <property name="userAddress" type="string">
+            <column name="user_address" length="45" not-null="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="user_password" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

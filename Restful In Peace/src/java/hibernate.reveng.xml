@@ -48,4 +48,5 @@ Contributor(s):
   <table-filter match-name="patient"/>
   <table-filter match-name="indoor"/>
   <table-filter match-name="specialist"/>
+  <table-filter match-name="user"/>
 </hibernate-reverse-engineering>

@@ -41,6 +41,7 @@
                 <value>com/zahangir/model/Patient.hbm.xml</value>
                 <value>com/zahangir/model/ReleasedPatient.hbm.xml</value>
                 <value>com/zahangir/model/Specialist.hbm.xml</value>
+                <value>com/zahangir/model/User.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">

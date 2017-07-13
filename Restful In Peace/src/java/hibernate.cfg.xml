@@ -53,5 +53,6 @@ Contributor(s):
     <mapping resource="com/zahangir/model/Indoor.hbm.xml"/>
     <mapping resource="com/zahangir/model/ReleasedPatient.hbm.xml"/>
     <mapping resource="com/zahangir/model/Outdoor.hbm.xml"/>
+    <mapping resource="com/zahangir/model/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
