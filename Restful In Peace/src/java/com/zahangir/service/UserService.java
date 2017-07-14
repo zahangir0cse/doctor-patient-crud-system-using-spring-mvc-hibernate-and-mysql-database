@@ -17,5 +17,5 @@ public interface UserService {
     public List<User> userList();
     public void removeUser(Integer userId);
     public void updateUser(User user);
-    public List<User> getUserByEmail(String email);
+    boolean getUserByEmailAndPass(String email, String pass);
 }

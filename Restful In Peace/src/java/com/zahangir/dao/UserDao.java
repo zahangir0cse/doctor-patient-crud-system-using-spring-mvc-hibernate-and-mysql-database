@@ -13,9 +13,9 @@ import java.util.List;
  * @author Zahangir Alam
  */
 public interface UserDao {
-    public void addUser(User user);
-    public List<User> userList();
-    public void removeUser(Integer userId);
-    public void updateUser(User user);
-    public List<User> getUserByEmail(String email);
+    void addUser(User user);
+    List<User> userList();
+    void removeUser(Integer userId);
+    void updateUser(User user);
+    boolean getUserByEmailAndPass(String email, String pass);
 }

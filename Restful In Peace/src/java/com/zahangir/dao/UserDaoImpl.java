@@ -46,9 +46,10 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public List<User> getUserByEmail(String email) {
-        List<User> userList = sessionFactory.getCurrentSession().createQuery("SELECT u FROM User AS u where email=:umail").setParameter("umail", email).list();
-        return userList;
+    public boolean getUserByEmailAndPass(String email, String pass) {
+        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='"+email+"' and u.userPassword = '"+pass+"'").list();
+        return userList.size()>0;
+        
     }
     
 }

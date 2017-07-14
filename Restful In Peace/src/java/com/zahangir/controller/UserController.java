@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "user")
 public class UserController {
-    
+
     @Autowired
     UserService userService;
 
@@ -49,9 +50,14 @@ public class UserController {
         return roleList;
     }
 
-    @RequestMapping("/check")
-    public String adminView(ModelMap map) {
-        map.addAttribute("hello", "Hello Admin");
-        return "admin";
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    public String adminView(ModelMap map, @RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword) {
+        if (userService.getUserByEmailAndPass(userEmail, userPassword)) {
+            map.addAttribute("hello", "Hello Admin");
+            return "admin";
+        }else{
+            return "redirect:/login";
+        }
+
     }
 }
