@@ -10,6 +10,7 @@ import com.zahangir.service.OutdoorService;
 import com.zahangir.service.SpecialistService;
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -51,27 +52,35 @@ public class AdmissionController {
     }
 
     @RequestMapping(value = "/goindoor", method = RequestMethod.POST)
-    public String addIndoorPatient(@ModelAttribute("indoor") Indoor indoor, BindingResult result) {
-        Admission admission = admissionService.lastAdmission();
+    public String addIndoorPatient(@Valid @ModelAttribute("indoor") Indoor indoor, BindingResult result) {
+        if (result.hasErrors()) {
+            return "indoor";
+        } else {
+            Admission admission = admissionService.lastAdmission();
 //            System.out.println("Hello I am here...");
-        indoor.setSpecialist(specialistService.getSpecialistByDepartment(indoor.getIndoorDepartment()));
-        indoor.setAdmission(admission);
-        //indoor.setIndoorDepartment(indoor.getIndoorDepartment());
-        indoorService.addIndoor(indoor);
-        return "welcomeindoor";
+            indoor.setSpecialist(specialistService.getSpecialistByDepartment(indoor.getIndoorDepartment()));
+            indoor.setAdmission(admission);
+            //indoor.setIndoorDepartment(indoor.getIndoorDepartment());
+            indoorService.addIndoor(indoor);
+            return "welcomeindoor";
+        }
 
     }
 
     @RequestMapping(value = "/gooutdoor", method = RequestMethod.POST)
-    public String addOutdoorPatient(@ModelAttribute("outdoor") Outdoor outdoor, BindingResult result) {
-        Admission admission = admissionService.lastAdmission();
-        outdoor.setAdmission(admission);
-        System.out.println(miService.getMiByTime(outdoor.getOutdoorTime()).getMiName());
-        outdoor.setMi(miService.getMiByTime(outdoor.getOutdoorTime()));
+    public String addOutdoorPatient(@Valid @ModelAttribute("outdoor") Outdoor outdoor, BindingResult result) {
+        if (result.hasErrors()) {
+            return "outdoor";
+        } else {
+            Admission admission = admissionService.lastAdmission();
+            outdoor.setAdmission(admission);
+            System.out.println(miService.getMiByTime(outdoor.getOutdoorTime()).getMiName());
+            outdoor.setMi(miService.getMiByTime(outdoor.getOutdoorTime()));
 //            System.out.println(admission.getAdmissionId());//ok
 //            System.out.println("Hello I am out...");//ok
-        outdoorService.addOutdoor(outdoor);//solved
-        return "welcomeoutdoor";
+            outdoorService.addOutdoor(outdoor);//solved
+            return "welcomeoutdoor";
+        }
     }
 
     @ModelAttribute("timeList")

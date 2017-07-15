@@ -16,6 +16,7 @@
     </head>
     <body>
         <h1><spring:message code="label.indoorHeading"/></h1>
+        <form:errors path="indoor.*"/>
         <c:url var="action" value="/admission/goindoor"/>
         <form:form method="post" action="${action}" commandName="indoor">
             <table>

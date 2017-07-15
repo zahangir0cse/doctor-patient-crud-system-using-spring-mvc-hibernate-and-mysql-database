@@ -23,6 +23,7 @@ public class Patient  implements java.io.Serializable {
      private Integer patientId;
      @Size(max = 30, min = 3, message = "name must be between {min} to {max} character")
      private String patientName;
+     //@NotZero(message = "Age must be at least 1 year")
      private int patientAge;
      @NotNull(message = "Please select gender")
      private String patientGender;

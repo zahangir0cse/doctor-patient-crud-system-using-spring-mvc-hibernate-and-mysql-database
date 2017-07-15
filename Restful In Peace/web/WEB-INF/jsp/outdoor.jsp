@@ -16,6 +16,7 @@
     </head>
     <body>
         <h1><spring:message code="label.outdoorHeading"/></h1>
+        <form:errors path="outdoor.*"/>
         <c:url var="action" value="/admission/gooutdoor"/>
        <form:form method="post" action="${action}" commandName="outdoor">
             <table>
