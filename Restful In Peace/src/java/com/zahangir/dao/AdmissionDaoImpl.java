@@ -6,15 +6,12 @@
 package com.zahangir.dao;
 
 import com.zahangir.model.Admission;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Zahangir Alam
- */
 @Repository
 public class AdmissionDaoImpl implements AdmissionDao{
     
@@ -48,6 +45,12 @@ public class AdmissionDaoImpl implements AdmissionDao{
         query.setParameter("pid", id);
         query.executeUpdate();
         System.out.println("delete 3");
+    }
+
+    @Override
+    public Admission getAdmissionById(int id) {
+        List<Admission> list = sessionFactory.getCurrentSession().createQuery("from Admission a where a.admissionId=:aid").setParameter("aid", id).list();
+        return list.size()>0?(Admission) list.get(0): null;
     }
     
 }

@@ -8,4 +8,5 @@ public interface AdmissionService {
     void removeAdmissionById(int id);
     Admission lastAdmission();
     void deleteAdmissionByPatientId(int id);
+    Admission getAdmissionById(int id);
 }

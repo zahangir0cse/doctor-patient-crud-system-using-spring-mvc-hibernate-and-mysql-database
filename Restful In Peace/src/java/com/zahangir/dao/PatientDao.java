@@ -8,4 +8,5 @@ public interface PatientDao {
     void addPatient(Patient p);
     void removePatientById(int id);
     List<Patient> patientList();
+    Patient getPatientById(int id);
 }

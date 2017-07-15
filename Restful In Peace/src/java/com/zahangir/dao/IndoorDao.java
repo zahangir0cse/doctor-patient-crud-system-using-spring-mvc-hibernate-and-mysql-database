@@ -18,4 +18,5 @@ public interface IndoorDao {
     List<Object[]> getIndoorPatientList();
     void deleteIndoorByPatientId(int id);
     Indoor getIndoorByPatientId(int id);
+    Indoor lastIndoor();
 }

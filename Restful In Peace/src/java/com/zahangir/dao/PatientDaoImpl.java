@@ -39,5 +39,11 @@ public class PatientDaoImpl implements PatientDao{
     public List<Patient> patientList() {
         return sessionFactory.getCurrentSession().createQuery("from Patient").list();
     }
+
+    @Override
+    public Patient getPatientById(int id) {
+        List<Patient> list = sessionFactory.getCurrentSession().createQuery("from Patient p where p.patientId=:pid").setParameter("pid", id).list();
+        return list.size()>0?(Patient) list.get(0): null;
+    }
     
 }

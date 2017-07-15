@@ -55,5 +55,11 @@ public class IndoorDaoImpl implements IndoorDao{
         Indoor indoor = (Indoor)sessionFactory.getCurrentSession().createQuery("FROM Indoor i where i.admission.patient.patientId='"+id+"'").uniqueResult();
         return indoor;
     }
+
+    @Override
+    public Indoor lastIndoor() {
+        Indoor lastIndoor = (Indoor) sessionFactory.getCurrentSession().createQuery("FROM Indoor ORDER BY indoorId DESC").setMaxResults(1).uniqueResult();
+        return lastIndoor;
+    }
     
 }

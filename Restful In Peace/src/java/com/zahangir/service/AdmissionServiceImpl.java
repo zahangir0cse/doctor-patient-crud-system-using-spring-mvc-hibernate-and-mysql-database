@@ -44,5 +44,11 @@ public class AdmissionServiceImpl implements AdmissionService{
     public void deleteAdmissionByPatientId(int id) {
         admissionDao.deleteAdmissionByPatientId(id);
     }
+
+    @Override
+    @Transactional
+    public Admission getAdmissionById(int id) {
+        return admissionDao.getAdmissionById(id);
+    }
     
 }

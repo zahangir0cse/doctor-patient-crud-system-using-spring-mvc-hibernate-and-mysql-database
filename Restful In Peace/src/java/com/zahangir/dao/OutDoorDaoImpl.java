@@ -51,4 +51,10 @@ public class OutDoorDaoImpl implements OutDoorDao {
         query.executeUpdate();
     }
 
+    @Override
+    public Outdoor lastOutdoor() {
+        Outdoor lastOutdoor = (Outdoor) sessionFactory.getCurrentSession().createQuery("FROM Outdoor ORDER BY outdoorId DESC").setMaxResults(1).uniqueResult();
+        return lastOutdoor;
+    }
+
 }

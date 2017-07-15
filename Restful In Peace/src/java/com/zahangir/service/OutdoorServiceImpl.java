@@ -45,5 +45,11 @@ public class OutdoorServiceImpl implements OutdoorService{
     public void deleteOutdoorByPatientId(int id) {
         outDoorDao.deleteOutdoorByPatientId(id);
     }
+
+    @Override
+    @Transactional
+    public Outdoor lastOutdoor() {
+        return outDoorDao.lastOutdoor();
+    }
     
 }

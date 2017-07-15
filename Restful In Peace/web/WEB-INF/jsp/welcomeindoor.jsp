@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Hello indoor!</h1>
+        <p><a href="/Restful_In_Peace/indoor/your_info">View your information</a></p>
     </body>
 </html>

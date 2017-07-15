@@ -51,5 +51,11 @@ public class IndoorServiceImpl implements IndoorService{
     public Indoor getIndoorByPatientId(int id) {
         return indoorDao.getIndoorByPatientId(id);
     }
+
+    @Override
+    @Transactional
+    public Indoor lastIndoor() {
+        return indoorDao.lastIndoor();
+    }
     
 }
