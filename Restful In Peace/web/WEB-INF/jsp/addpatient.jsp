@@ -17,6 +17,7 @@
     <body>
         <h3><spring:message code="label.patientHeading"/></h3>
         <c:url var="action" value="/admit"/>
+        <form:errors path="patient.*"/>
         <form:form method="post" action="${action}" commandName="patient">
             <table>
                 <tr>
@@ -36,7 +37,10 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="patientAge"/>
+                        <form:select path="patientAge">
+                            <form:option value="0" label="----Select Age----"/>
+                            <form:options items="${ageList}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +86,7 @@
                 </tr>
                 <tr>
                     <td> 
-                            <input type="submit" value="<spring:message code="label.patientSubmit"/>"/>
+                        <input type="submit" value="<spring:message code="label.patientSubmit"/>"/>
                     </td>
                 </tr>
             </table>
