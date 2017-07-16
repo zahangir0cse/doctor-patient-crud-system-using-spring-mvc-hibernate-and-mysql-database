@@ -43,7 +43,7 @@ public class SpecialistController {
         }
 
     }
-    
+
     @ModelAttribute("specialtyList")
     public Map<String, String> getSpecialtyList() {
         Map<String, String> specialtyList = new HashMap<>();
@@ -54,7 +54,7 @@ public class SpecialistController {
         specialtyList.put("Surgery-General", "Surgery-General");
         return specialtyList;
     }
-    
+
     @ModelAttribute("qualificationList")
     public Map<String, String> geQualificationList() {
         Map<String, String> qualificationList = new HashMap<>();
@@ -64,9 +64,23 @@ public class SpecialistController {
     }
 
     @RequestMapping(value = "/specialist/sedit", method = RequestMethod.POST)
-    public String editSpecialist(@ModelAttribute("specialist") Specialist specialist, BindingResult result) {
-        specialistService.updateSpecialist(specialist);
-        return "redirect:/specialist/allsp";
+    public String editSpecialist(@Valid @ModelAttribute("specialist") Specialist specialist, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editspecialist";
+        } else {
+            specialistService.updateSpecialist(specialist);
+            return "redirect:/specialist/allsp";
+        }
+    }
+    
+    @RequestMapping(value = "/sp/success", method = RequestMethod.POST)
+    public String spEdit(@Valid @ModelAttribute("specialist") Specialist specialist, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editsp";
+        } else {
+            specialistService.updateSpecialist(specialist);
+            return "spsuccess";
+        }
     }
 
     @RequestMapping(value = "/specialist/delete/{sid}")
@@ -76,10 +90,17 @@ public class SpecialistController {
     }
 
     @RequestMapping(value = "/specialist/edit/{sid}")
-    public String editProduct(@PathVariable("sid") Integer sid, Map<String, Object> map) {
+    public String editSpecialist(@PathVariable("sid") Integer sid, Map<String, Object> map) {
         map.put("specialist", specialistService.getSpecialistById(sid));
         map.put("specialistList", specialistService.getSpecialistList());
         return "editspecialist";
+    }
+
+    @RequestMapping(value = "/sp/edit/{sid}")
+    public String editSp(@PathVariable("sid") Integer sid, Map<String, Object> map) {
+        map.put("specialist", specialistService.getSpecialistById(sid));
+        map.put("specialistList", specialistService.getSpecialistList());
+        return "editsp";
     }
 
     @RequestMapping(value = "/specialist/allsp", method = RequestMethod.GET)

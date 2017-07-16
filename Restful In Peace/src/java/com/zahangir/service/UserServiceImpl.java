@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void removeUser(User user) {
-        userDao.removeUser(user);
+    public void removeUser(int id) {
+        userDao.removeUser(id);
     }
 
     @Override
@@ -56,6 +56,12 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public User getUserByEmail(String email) {
         return userDao.getUserByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public User isAdmin(String email) {
+        return userDao.isAdmin(email);
     }
     
 }

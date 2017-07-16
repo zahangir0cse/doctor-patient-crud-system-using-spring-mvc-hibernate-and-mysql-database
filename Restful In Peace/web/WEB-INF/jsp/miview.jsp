@@ -39,8 +39,8 @@
                 <td>${email}</td>
             </tr>
         </table>
-            <p><a href="">See your Patient</a></p>
-            <p><a href="/Restful_In_Peace/mi/edit/${id}">Edit your Information</a></p>
-            <p><a href="/Restful_In_Peace/user/logout">logout</a></p>
+
+        <p><a href="/Restful_In_Peace/miedit/${id}">Edit your Information</a></p>
+        <p><a href="/Restful_In_Peace/user/logout">logout</a></p>
     </body>
 </html>

@@ -16,9 +16,11 @@
     </head>
     <body>
         <h3>User Login</h3>
+        <p>${incorrect}</p><br>
+        <p>${reg}</p>
         <c:url var="action" value="/user/check"/>
         <form:form method="post" action="${action}" commandName="user">
-            <table>
+            <table><tr>
                     <td>
                         <form:label path="userEmail">
                             <spring:message code="label.userEmail"/>
@@ -45,6 +47,8 @@
                 </tr>
             </table>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <p>${incorrect}</p><br>
+            <p>${reg}</p>
         </form:form>
     </body>
 </html>

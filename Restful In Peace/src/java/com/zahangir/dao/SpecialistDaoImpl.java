@@ -61,7 +61,7 @@ public class SpecialistDaoImpl implements SpecialistDao{
     public Specialist getSpecialistByEmail(String email) {
         List<Specialist> list = sessionFactory.getCurrentSession().createQuery("from Specialist s where s.specialistEmail=:semail").setParameter("semail", email).list();
         if (list.size()>0) {
-            return (Specialist)list;
+            return (Specialist)list.get(0);
         }else{
             return null;
         }

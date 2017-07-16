@@ -1,6 +1,6 @@
 <%-- 
-    Document   : specialistedit
-    Created on : Jul 16, 2017, 5:26:32 PM
+    Document   : miview
+    Created on : Jul 16, 2017, 5:41:25 PM
     Author     : Zahangir Alam
 --%>
 
@@ -12,6 +12,35 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Information</h1>
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td>${name}</td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+                <td>${address}</td>
+            </tr>
+            <tr>
+                <td>Qualification: </td>
+                <td>${qualification}</td>
+            </tr>
+            <tr>
+                <td>Specialty: </td>
+                <td>${specialty}</td>
+            </tr>
+            <tr>
+                <td>Contact No: </td>
+                <td>${contact}</td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td>${email}</td>
+            </tr>
+        </table>
+
+        <p><a href="/Restful_In_Peace/sp/edit/${id}">Edit your Information</a></p>
+        <p><a href="/Restful_In_Peace/user/logout">logout</a></p>
     </body>
 </html>

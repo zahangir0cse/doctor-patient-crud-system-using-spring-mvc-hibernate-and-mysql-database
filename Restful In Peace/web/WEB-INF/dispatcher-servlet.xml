@@ -67,6 +67,20 @@
             <mvc:mapping path="/allpatient"/>
             <mvc:mapping path="/specialist/allsp"/>
             <mvc:mapping path="/mi/allmi"/>
+            <mvc:mapping path="/sp/success"/>
+            <mvc:mapping path="/specialist/sedit"/>
+            <mvc:mapping path="/sp/edit/**"/>
+            <mvc:mapping path="/specialist/edit/**"/>
+            <mvc:mapping path="/specialist/delete/**"/>
+            <mvc:mapping path="/specialist/sadd"/>
+            <mvc:mapping path="/specialist/specialistinfo"/>
+            <mvc:mapping path="/mi/miinfo"/>
+            <mvc:mapping path="/mi/madd"/>
+            <mvc:mapping path="/mi/medit"/>
+            <mvc:mapping path="/editmi"/>
+            <mvc:mapping path="/mi/delete/**"/>
+            <mvc:mapping path="/mi/edit/**"/>
+            <mvc:mapping path="/miedit/**"/>
             <bean id="" class="com.zahangir.logincontrolinterceptor.LoginControlInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

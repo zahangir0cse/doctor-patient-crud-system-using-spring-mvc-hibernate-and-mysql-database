@@ -14,7 +14,6 @@ import com.zahangir.service.OutdoorService;
 import com.zahangir.service.SpecialistService;
 import com.zahangir.service.UserService;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -42,7 +41,7 @@ public class UserController {
 
     @Autowired
     MiService miService;
-    
+
     @Autowired
     OutdoorService outdoorService;
 
@@ -82,43 +81,44 @@ public class UserController {
             User loginUser = userService.getUserByEmail(userEmail);
             map.addAttribute("hello", "Hello" + loginUser.getUserName());
             request.getSession(true).setAttribute("email", userEmail);
-            if (specialistService.getSpecialistByEmail(userEmail) != null) {
-                Specialist s = specialistService.getSpecialistByEmail(userEmail);
-                map.put("id", s.getSpecialistId());
-                map.put("name", s.getSpecialistName());
-                map.put("email", s.getSpecialistEmail());
-                map.put("contact", s.getSpecialistContactNo());
-                map.put("specialty", s.getSpecialistSpeialty());
-                map.put("qualificatio", s.getSpecialistQualification());
-                map.put("address", s.getSpecialistAddress());
-                return "specialistview";
-            } else if (miService.getMiByEmail(userEmail) != null) {
-                Mi m = miService.getMiByEmail(userEmail);
-                List<Outdoor> list = outdoorService.getPatientByMiId(m.getMiId());
-                map.put("id", m.getMiId());
-                map.put("name", m.getMiName());
-                map.put("email", m.getMiEmail());
-                map.put("contact", m.getMiContactNo());
-                map.put("time", m.getMiTime());
-                map.put("qualification", m.getMiQualification());
-                map.put("address", m.getMiAddress());
-                map.put("listmi", list);
-                return "miedit";
-            } else if ("admin".equals(loginUser.getUserRole())) {
-                return "admin";
-            }else{
-                userService.removeUser(loginUser);
-                request.getSession().invalidate();
-                map.put("invalid", "Invalid user");
-                return "adduser";
-            }
+            System.out.println(loginUser.getUserRole());
+//            String role = "admin";
+//            String urole= loginUser.getUserName();
+//            if (specialistService.getSpecialistByEmail(userEmail) != null) {
+//                Specialist s = specialistService.getSpecialistByEmail(userEmail);
+//                map.put("id", s.getSpecialistId());
+//                map.put("name", s.getSpecialistName());
+//                map.put("email", s.getSpecialistEmail());
+//                map.put("contact", s.getSpecialistContactNo());
+//                map.put("specialty", s.getSpecialistSpeialty());
+//                map.put("qualification", s.getSpecialistQualification());
+//                map.put("address", s.getSpecialistAddress());
+//                return "specialistview";
+//            } 
+//            if (miService.getMiByEmail(userEmail) != null) {
+//                Mi m = miService.getMiByEmail(userEmail);
+//                //List<Outdoor> list = outdoorService.getPatientByMiId(m.getMiId());
+//                map.put("id", m.getMiId());
+//                map.put("name", m.getMiName());
+//                map.put("email", m.getMiEmail());
+//                map.put("contact", m.getMiContactNo());
+//                map.put("time", m.getMiTime());
+//                map.put("qualification", m.getMiQualification());
+//                map.put("address", m.getMiAddress());
+//                map.put("outdoor", new Outdoor());
+//                //map.put("listmi", list);
+//                return "miedit";
+//            }
+            return "admin";
         } else {
+            map.addAttribute("incorrect", "Incorrect username or password");
+            map.addAttribute("reg", "Yet not registered.. please <a href='/Restful_In_Peace/user'> register here</a>");
             return "redirect:/user/login";
         }
 
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/user/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/user/login";

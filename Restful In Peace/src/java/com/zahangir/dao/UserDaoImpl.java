@@ -16,8 +16,8 @@ import org.springframework.stereotype.Repository;
  * @author Zahangir Alam
  */
 @Repository
-public class UserDaoImpl implements UserDao{
-    
+public class UserDaoImpl implements UserDao {
+
     @Autowired
     SessionFactory sessionFactory;
 
@@ -33,8 +33,11 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void removeUser(User user) {
-            sessionFactory.getCurrentSession().delete(user);
+    public void removeUser(int id) {
+        User user = (User) sessionFactory.getCurrentSession().load(User.class, id);
+        if (user != null) {
+            sessionFactory.getCurrentSession().delete(id);
+        }
     }
 
     @Override
@@ -44,19 +47,29 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public boolean getUserByEmailAndPass(String email, String pass) {
-        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='"+email+"' and u.userPassword = '"+pass+"'").list();
-        return userList.size()>0;
-        
+        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='" + email + "' and u.userPassword = '" + pass + "'").list();
+        return userList.size() > 0;
+
     }
 
     @Override
     public User getUserByEmail(String email) {
-        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='"+email+"'").list();
-        if (userList.size()>0) {
-            return (User)userList.get(0);
-        }else{
+        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='" + email + "'").list();
+        if (userList.size() > 0) {
+            return (User) userList.get(0);
+        } else {
             return null;
         }
     }
-    
+
+    @Override
+    public User isAdmin(String email) {
+        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='" + email + "' and u.userRole = 'admin'").list();
+        if (userList.size() > 0) {
+            return (User) userList.get(0);
+        } else {
+            return null;
+        }
+    }
+
 }
