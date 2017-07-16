@@ -57,4 +57,10 @@ public class OutDoorDaoImpl implements OutDoorDao {
         return lastOutdoor;
     }
 
+    @Override
+    public List<Outdoor> getPatientByMiId(int id) {
+        List<Outdoor> list = sessionFactory.getCurrentSession().createQuery("from Outdoor o where o.mi.miId = :mid").setParameter("mid", id).list();
+        return list;
+    }
+
 }

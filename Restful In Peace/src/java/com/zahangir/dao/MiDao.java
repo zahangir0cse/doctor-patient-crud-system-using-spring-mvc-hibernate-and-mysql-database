@@ -19,4 +19,5 @@ public interface MiDao {
     List<Mi> getMiList();
     Mi getMiByTime(String time);
     Mi getMiById(int id);
+    Mi getMiByEmail(String email);
 }

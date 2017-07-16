@@ -16,7 +16,9 @@
     </head>
     <body>
         <h3>User Registration</h3>
-        <c:url var="action" value="/user/login"/>
+        <c:url var="action" value="/user/regsuccess"/>
+        <form:errors path="user.*"/>
+        <p>${invalid}</p>
         <form:form method="post" action="${action}" commandName="user">
             <table>
                 <tr>

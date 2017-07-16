@@ -1,6 +1,6 @@
 <%-- 
-    Document   : successreg
-    Created on : Jul 16, 2017, 6:05:48 AM
+    Document   : misuccess
+    Created on : Jul 16, 2017, 6:24:02 PM
     Author     : Zahangir Alam
 --%>
 
@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Registration successful</h1>
-        <p>Please <a href="/Restful_In_Peace/user/login"> login </a> here</p>
+        <h1>Edited successfully</h1>
+        <p><a href="/Restful_In_Peace/user/check">Go home</a></p>
+        <p><a href="/Restful_In_Peace/user/logout">logout</a></p>
     </body>
 </html>

@@ -37,7 +37,10 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="specialistQualification"/>
+                        <form:select path="specialistQualification">
+                            <form:option value="" label="----Select Qualification----"/>
+                            <form:options items="${qualificationList}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>
@@ -47,7 +50,10 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="specialistSpeialty"/>
+                        <form:select path="specialistSpeialty">
+                            <form:option value="" label="----Select Speciality----"/>
+                            <form:options items="${specialtyList}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>

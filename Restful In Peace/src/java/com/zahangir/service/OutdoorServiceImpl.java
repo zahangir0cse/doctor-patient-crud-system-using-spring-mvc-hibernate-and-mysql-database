@@ -51,5 +51,11 @@ public class OutdoorServiceImpl implements OutdoorService{
     public Outdoor lastOutdoor() {
         return outDoorDao.lastOutdoor();
     }
+
+    @Override
+    @Transactional
+    public List<Outdoor> getPatientByMiId(int id) {
+        return outDoorDao.getPatientByMiId(id);
+    }
     
 }

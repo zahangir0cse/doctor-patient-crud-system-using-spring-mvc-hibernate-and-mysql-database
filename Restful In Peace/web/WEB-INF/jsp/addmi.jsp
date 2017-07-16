@@ -37,7 +37,10 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="miQualification"/>
+                        <form:select path="miQualification">
+                            <form:option value="" label="----Select Qualification----"/>
+                            <form:options items="${qualificationList}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>

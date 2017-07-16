@@ -57,5 +57,11 @@ public class SpecialistServiceImpl implements SpecialistService{
     public Specialist getSpecialistById(int id) {
         return specialistDao.getSpecialistById(id);
     }
+
+    @Override
+    @Transactional
+    public Specialist getSpecialistByEmail(String email) {
+        return specialistDao.getSpecialistByEmail(email);
+    }
     
 }

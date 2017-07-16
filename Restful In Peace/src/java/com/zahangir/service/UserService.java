@@ -15,7 +15,7 @@ import java.util.List;
 public interface UserService {
     public void addUser(User user);
     public List<User> userList();
-    public void removeUser(Integer userId);
+    public void removeUser(User user);
     public void updateUser(User user);
     boolean getUserByEmailAndPass(String email, String pass);
     User getUserByEmail(String email);

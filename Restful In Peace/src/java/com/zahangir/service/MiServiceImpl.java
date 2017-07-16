@@ -57,5 +57,10 @@ public class MiServiceImpl implements MiService{
     public Mi getMiById(int id) {
         return miDao.getMiById(id);
     }
+
+    @Override
+    public Mi getMiByEmail(String email) {
+        return miDao.getMiByEmail(email);
+    }
     
 }

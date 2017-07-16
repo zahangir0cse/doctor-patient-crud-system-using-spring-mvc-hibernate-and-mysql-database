@@ -5,9 +5,16 @@
  */
 package com.zahangir.controller;
 
+import com.zahangir.model.Mi;
+import com.zahangir.model.Outdoor;
+import com.zahangir.model.Specialist;
 import com.zahangir.model.User;
+import com.zahangir.service.MiService;
+import com.zahangir.service.OutdoorService;
+import com.zahangir.service.SpecialistService;
 import com.zahangir.service.UserService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -25,29 +32,37 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Zahangir Alam
  */
 @Controller
-@RequestMapping(value = "user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @Autowired
+    SpecialistService specialistService;
+
+    @Autowired
+    MiService miService;
+    
+    @Autowired
+    OutdoorService outdoorService;
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String userRegister(@ModelAttribute("user") User user, BindingResult result) {
         return "adduser";
     }
-    
-    @RequestMapping("/regsuccess")
-    public String successRegistration(@Valid @ModelAttribute("user") User user, BindingResult result){
+
+    @RequestMapping(value = "/user/regsuccess", method = RequestMethod.POST)
+    public String successRegistration(@Valid @ModelAttribute("user") User user, BindingResult result) {
         if (result.hasErrors()) {
             return "adduser";
         } else {
             userService.addUser(user);
             return "successreg";
         }
-        
+
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/login", method = RequestMethod.GET)
     public String addAdmission(@ModelAttribute("user") User user) {
         return "login";
     }
@@ -56,25 +71,55 @@ public class UserController {
     public Map<String, String> getRoleList() {
         Map<String, String> roleList = new HashMap<>();
         roleList.put("admin", "admin");
-        roleList.put("clark", "clerk");
+        roleList.put("specialist", "specialist");
+        roleList.put("mi", "mi");
         return roleList;
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/check", method = RequestMethod.POST)
     public String adminView(ModelMap map, @RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request) {
         if (userService.getUserByEmailAndPass(userEmail, userPassword)) {
-            map.addAttribute("hello", "Hello Admin");
-            //User loginUser = userService.getUserByEmail(userEmail);
+            User loginUser = userService.getUserByEmail(userEmail);
+            map.addAttribute("hello", "Hello" + loginUser.getUserName());
             request.getSession(true).setAttribute("email", userEmail);
-            return "admin";
-        }else{
+            if (specialistService.getSpecialistByEmail(userEmail) != null) {
+                Specialist s = specialistService.getSpecialistByEmail(userEmail);
+                map.put("id", s.getSpecialistId());
+                map.put("name", s.getSpecialistName());
+                map.put("email", s.getSpecialistEmail());
+                map.put("contact", s.getSpecialistContactNo());
+                map.put("specialty", s.getSpecialistSpeialty());
+                map.put("qualificatio", s.getSpecialistQualification());
+                map.put("address", s.getSpecialistAddress());
+                return "specialistview";
+            } else if (miService.getMiByEmail(userEmail) != null) {
+                Mi m = miService.getMiByEmail(userEmail);
+                List<Outdoor> list = outdoorService.getPatientByMiId(m.getMiId());
+                map.put("id", m.getMiId());
+                map.put("name", m.getMiName());
+                map.put("email", m.getMiEmail());
+                map.put("contact", m.getMiContactNo());
+                map.put("time", m.getMiTime());
+                map.put("qualification", m.getMiQualification());
+                map.put("address", m.getMiAddress());
+                map.put("listmi", list);
+                return "miedit";
+            } else if ("admin".equals(loginUser.getUserRole())) {
+                return "admin";
+            }else{
+                userService.removeUser(loginUser);
+                request.getSession().invalidate();
+                map.put("invalid", "Invalid user");
+                return "adduser";
+            }
+        } else {
             return "redirect:/user/login";
         }
 
     }
-    
+
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/user/login";
     }

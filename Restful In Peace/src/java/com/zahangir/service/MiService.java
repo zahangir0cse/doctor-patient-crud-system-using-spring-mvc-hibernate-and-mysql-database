@@ -16,6 +16,7 @@ public interface MiService {
     void addMi(Mi mi);
     void removeMiById(int id);
     void updateMi(Mi mi);
+    Mi getMiByEmail(String email);
     List<Mi> getMiList();
     Mi getMiByTime(String time);
     Mi getMiById(int id);

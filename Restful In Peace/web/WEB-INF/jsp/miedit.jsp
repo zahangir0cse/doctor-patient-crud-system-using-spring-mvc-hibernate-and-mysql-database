@@ -1,22 +1,19 @@
 <%-- 
-    Document   : addpatient
-    Created on : Jul 10, 2017, 1:07:24 PM
+    Document   : miedit
+    Created on : Jul 16, 2017, 6:04:05 PM
     Author     : Zahangir Alam
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mi doctor</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h3><spring:message code="label.miHeading"/></h3>
-        <c:url var="action" value="/mi/medit"/>
+        <h1>MI Edit</h1>
+        <c:url var="action" value="/editmi"/>
         <form:errors path="mi.*"/>
         <form:form method="post" action="${action}" commandName="mi">
             <table>

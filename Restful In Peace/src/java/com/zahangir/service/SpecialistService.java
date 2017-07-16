@@ -16,6 +16,7 @@ public interface SpecialistService {
     void addSpecialist(Specialist specialist);
     void removeSpecialistById(int id);
     void updateSpecialist(Specialist specialist);
+    Specialist getSpecialistByEmail(String email);
     List<Specialist> getSpecialistList();
     Specialist getSpecialistByDepartment(String department);
     Specialist getSpecialistById(int id);

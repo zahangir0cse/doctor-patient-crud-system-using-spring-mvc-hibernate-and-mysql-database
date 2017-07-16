@@ -9,6 +9,7 @@ import com.zahangir.model.Mi;
 import com.zahangir.service.MiService;
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,13 +44,29 @@ public class MiController {
     }
 
     @RequestMapping(value = "/mi/medit", method = RequestMethod.POST)
-    public String editMi(@ModelAttribute("mi") Mi mi, BindingResult result) {
-        if (mi.getMiId() != null) {
+    public String editMi(@Valid @ModelAttribute("mi") Mi mi, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editmi";
+        }else {
             System.out.println("Hello i am here");
             miService.updateMi(mi);
             System.out.println("Hello i am here");
+            return "redirect:/mi/allmi";
         }
-        return "redirect:/mi/allmi";
+        
+    }
+    
+    @RequestMapping(value = "/editmi", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute("mi") Mi mi, BindingResult result) {
+        if (result.hasErrors()) {
+            return "miedit";
+        }else {
+            System.out.println("Hello i am here");
+            miService.updateMi(mi);
+            System.out.println("Hello i am here");
+            return "misuccess";
+        }
+        
     }
 
     @ModelAttribute("timeList")
@@ -76,9 +93,23 @@ public class MiController {
     }
 
     @RequestMapping(value = "/mi/edit/{mid}")
-    public String editProduct(@PathVariable("mid") Integer mid, Map<String, Object> map) {
+    public String editMi(@PathVariable("mid") Integer mid, Map<String, Object> map) {
         map.put("mi", miService.getMiById(mid));
         map.put("miList", miService.getMiList());
         return "editmi";
+    }
+    
+    @RequestMapping(value = "/miedit/{mid}")
+    public String Miedit(@PathVariable("mid") Integer mid, Map<String, Object> map) {
+        map.put("mi", miService.getMiById(mid));
+        map.put("miList", miService.getMiList());
+        return "miedit";
+    }
+    @ModelAttribute("qualificationList")
+    public Map<String, String> geQualificationList() {
+        Map<String, String> qualificationList = new HashMap<>();
+        qualificationList.put("PhD", "PhD");
+        qualificationList.put("MBBS", "MBBS");
+        return qualificationList;
     }
 }

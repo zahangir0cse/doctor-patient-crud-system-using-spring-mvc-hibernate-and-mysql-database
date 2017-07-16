@@ -57,5 +57,11 @@ public class IndoorServiceImpl implements IndoorService{
     public Indoor lastIndoor() {
         return indoorDao.lastIndoor();
     }
+
+    @Override
+    @Transactional
+    public List<Object[]> patientListBySpEmail(String email) {
+        return indoorDao.patientListBySpEmail(email);
+    }
     
 }

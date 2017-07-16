@@ -58,5 +58,15 @@ public class MiDaoImpl implements MiDao{
         List<Mi> list = sessionFactory.getCurrentSession().createQuery("from Mi m where m.miId=:mid").setParameter("mid", id).list();
         return list.size()>0?(Mi) list.get(0): null;
     }
+
+    @Override
+    public Mi getMiByEmail(String email) {
+        List<Mi> list = sessionFactory.getCurrentSession().createQuery("from Mi m where m.miEmail=:memail").setParameter("memail", email).list();
+        if (list.size()>0) {
+            return (Mi)list;
+        }else{
+            return null;
+        }
+    }
     
 }

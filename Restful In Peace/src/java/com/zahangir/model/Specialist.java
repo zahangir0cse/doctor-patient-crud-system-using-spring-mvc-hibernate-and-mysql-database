@@ -30,7 +30,7 @@ public class Specialist  implements java.io.Serializable {
      private String specialistSpeialty;
      @Size(min = 5, max = 60, message = "Address must be between {min} to {max} characters")
      private String specialistAddress;
-     @Phone
+     @Phone(message = "Contact no is not formated")
      private String specialistContactNo;
      @NotNull(message = "You must check your gender")
      private String specialistGender;

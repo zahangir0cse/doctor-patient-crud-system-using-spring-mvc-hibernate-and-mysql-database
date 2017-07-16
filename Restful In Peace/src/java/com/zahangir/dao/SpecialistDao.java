@@ -19,4 +19,5 @@ public interface SpecialistDao {
     List<Specialist> getSpecialistList();
     Specialist getSpecialistByDepartment(String department);
     Specialist getSpecialistById(int id);
+    Specialist getSpecialistByEmail(String email);
 }

@@ -7,6 +7,7 @@ package com.zahangir.controller;
 
 import com.zahangir.model.Specialist;
 import com.zahangir.service.SpecialistService;
+import java.util.HashMap;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,25 @@ public class SpecialistController {
             return "redirect:/specialist/allsp";
         }
 
+    }
+    
+    @ModelAttribute("specialtyList")
+    public Map<String, String> getSpecialtyList() {
+        Map<String, String> specialtyList = new HashMap<>();
+        specialtyList.put("Abdominal Radiology", "Abdominal Radiology");
+        specialtyList.put("Pain Medicine", "Pain Medicine");
+        specialtyList.put("Dermatology", "Dermatology");
+        specialtyList.put("Radiation Oncology", "Radiation Oncology");
+        specialtyList.put("Surgery-General", "Surgery-General");
+        return specialtyList;
+    }
+    
+    @ModelAttribute("qualificationList")
+    public Map<String, String> geQualificationList() {
+        Map<String, String> qualificationList = new HashMap<>();
+        qualificationList.put("PhD", "PhD");
+        qualificationList.put("MBBS", "MBBS");
+        return qualificationList;
     }
 
     @RequestMapping(value = "/specialist/sedit", method = RequestMethod.POST)

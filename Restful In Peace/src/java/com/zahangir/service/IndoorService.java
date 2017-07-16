@@ -19,4 +19,5 @@ public interface IndoorService {
     void deleteIndoorByPatientId(int id);
     Indoor getIndoorByPatientId(int id);
     Indoor lastIndoor();
+    List<Object[]> patientListBySpEmail(String email);
 }

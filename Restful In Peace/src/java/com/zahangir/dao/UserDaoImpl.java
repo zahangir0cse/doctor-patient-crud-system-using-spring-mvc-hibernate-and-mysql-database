@@ -33,11 +33,8 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void removeUser(Integer userId) {
-        User user = (User) sessionFactory.getCurrentSession().load(User.class, userId);
-        if (user != null) {
+    public void removeUser(User user) {
             sessionFactory.getCurrentSession().delete(user);
-        }
     }
 
     @Override
