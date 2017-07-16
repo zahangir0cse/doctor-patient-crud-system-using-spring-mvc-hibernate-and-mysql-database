@@ -16,6 +16,7 @@
     </head>
     <body>
         <h3><spring:message code="label.specialistHeading"/></h3>
+        <form:errors path="specialist.*"/>
         <c:url var="action" value="/specialist/sadd"/>
         <form:form method="post" action="${action}" commandName="specialist">
             <table>

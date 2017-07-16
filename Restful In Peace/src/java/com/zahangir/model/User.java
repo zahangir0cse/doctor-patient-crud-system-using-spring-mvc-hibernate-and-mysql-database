@@ -1,7 +1,11 @@
 package com.zahangir.model;
 // Generated Jul 14, 2017 3:07:59 AM by Hibernate Tools 4.3.1
 
+import com.zahangir.mycustonvalidator.Phone;
 import javax.persistence.Entity;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 
@@ -13,11 +17,17 @@ public class User  implements java.io.Serializable {
 
 
      private Integer userId;
+     @Size(max = 30, min = 3, message = "Name must be between {min} to {max} characters")
      private String userName;
+     @NotEmpty(message = "You must select user role")
      private String userRole;
+     @Email(message = "Email format not valid")
      private String userEmail;
+     @Phone(message = "Contact no is not formated")
      private String userContactNo;
+     @Size(min = 5, max = 60, message = "Address must be between {min} to {max} characters")
      private String userAddress;
+     @Size(min = 8, message = "Password at least {min} character")
      private String userPassword;
 
     public User() {

@@ -51,5 +51,15 @@ public class UserDaoImpl implements UserDao{
         return userList.size()>0;
         
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        List<User> userList = sessionFactory.getCurrentSession().createQuery("FROM User u where u.userEmail='"+email+"'").list();
+        if (userList.size()>0) {
+            return (User)userList.get(0);
+        }else{
+            return null;
+        }
+    }
     
 }

@@ -8,6 +8,7 @@ package com.zahangir.controller;
 import com.zahangir.model.Specialist;
 import com.zahangir.service.SpecialistService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,9 +33,13 @@ public class SpecialistController {
     }
 
     @RequestMapping(value = "specialist/sadd", method = RequestMethod.POST)
-    public String addSpecialist(@ModelAttribute("specialist") Specialist specialist, BindingResult result) {
-        specialistService.addSpecialist(specialist);
-        return "redirect:/specialist/allsp";
+    public String addSpecialist(@Valid @ModelAttribute("specialist") Specialist specialist, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addspecialist";
+        } else {
+            specialistService.addSpecialist(specialist);
+            return "redirect:/specialist/allsp";
+        }
 
     }
 

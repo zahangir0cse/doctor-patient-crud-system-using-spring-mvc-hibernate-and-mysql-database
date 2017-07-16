@@ -18,5 +18,7 @@
         <a href="/Restful_In_Peace/allpatient">Patient list</a><br>
         <a href="/Restful_In_Peace/specialist/allsp">Specialist list</a><br>
         <a href="/Restful_In_Peace/mi/allmi">MI Doctor list</a>
-    </body>
+        
+        <p><a href="/Restful_In_Peace/user/logout">logout</a></p>
+</body>
 </html>

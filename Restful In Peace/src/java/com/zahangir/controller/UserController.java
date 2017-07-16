@@ -9,6 +9,8 @@ import com.zahangir.model.User;
 import com.zahangir.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,12 +35,20 @@ public class UserController {
     public String userRegister(@ModelAttribute("user") User user, BindingResult result) {
         return "adduser";
     }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String addAdmission(@ModelAttribute("user") User user, BindingResult result) {
-        if (user.getUserId() == null) {
+    
+    @RequestMapping("/regsuccess")
+    public String successRegistration(@Valid @ModelAttribute("user") User user, BindingResult result){
+        if (result.hasErrors()) {
+            return "adduser";
+        } else {
             userService.addUser(user);
+            return "successreg";
         }
+        
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String addAdmission(@ModelAttribute("user") User user) {
         return "login";
     }
 
@@ -51,13 +61,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    public String adminView(ModelMap map, @RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword) {
+    public String adminView(ModelMap map, @RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request) {
         if (userService.getUserByEmailAndPass(userEmail, userPassword)) {
             map.addAttribute("hello", "Hello Admin");
+            //User loginUser = userService.getUserByEmail(userEmail);
+            request.getSession(true).setAttribute("email", userEmail);
             return "admin";
         }else{
-            return "redirect:/login";
+            return "redirect:/user/login";
         }
 
+    }
+    
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/user/login";
     }
 }

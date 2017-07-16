@@ -18,4 +18,5 @@ public interface UserService {
     public void removeUser(Integer userId);
     public void updateUser(User user);
     boolean getUserByEmailAndPass(String email, String pass);
+    User getUserByEmail(String email);
 }

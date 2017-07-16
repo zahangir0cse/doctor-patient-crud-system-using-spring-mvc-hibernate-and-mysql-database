@@ -51,5 +51,11 @@ public class UserServiceImpl implements UserService{
     public boolean getUserByEmailAndPass(String email, String pass) {
         return userDao.getUserByEmailAndPass(email, pass);
     }
+
+    @Override
+    @Transactional
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
+    }
     
 }

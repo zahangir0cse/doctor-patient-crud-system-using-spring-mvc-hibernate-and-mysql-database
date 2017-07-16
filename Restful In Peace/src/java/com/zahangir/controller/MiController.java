@@ -34,11 +34,12 @@ public class MiController {
 
     @RequestMapping(value = "/mi/madd", method = RequestMethod.POST)
     public String addMi(@ModelAttribute("mi") Mi mi, BindingResult result) {
-        if (mi.getMiId() == null) {
+        if (result.hasErrors()) {
+            return "addmi";
+        } else {
             miService.addMi(mi);
+            return "redirect:/mi/allmi";
         }
-        return "redirect:/mi/allmi";
-
     }
 
     @RequestMapping(value = "/mi/medit", method = RequestMethod.POST)

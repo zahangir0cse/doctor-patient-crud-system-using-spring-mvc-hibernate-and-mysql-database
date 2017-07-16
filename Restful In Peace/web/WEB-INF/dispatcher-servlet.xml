@@ -60,6 +60,15 @@
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/message"/>
     </bean>
-
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/specialist/specialistinfo"/>
+            <mvc:mapping path="/mi/miinfo"/>
+            <mvc:mapping path="/allpatient"/>
+            <mvc:mapping path="/specialist/allsp"/>
+            <mvc:mapping path="/mi/allmi"/>
+            <bean id="" class="com.zahangir.logincontrolinterceptor.LoginControlInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
 </beans>

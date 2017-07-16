@@ -18,4 +18,5 @@ public interface UserDao {
     void removeUser(Integer userId);
     void updateUser(User user);
     boolean getUserByEmailAndPass(String email, String pass);
+    User getUserByEmail(String email);
 }
