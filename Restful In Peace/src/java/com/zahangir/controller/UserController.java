@@ -77,39 +77,43 @@ public class UserController {
 
     @RequestMapping(value = "/user/check", method = RequestMethod.POST)
     public String adminView(ModelMap map, @RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request) {
-        if (userService.getUserByEmailAndPass(userEmail, userPassword)) {
+        if (userService.getUserByEmailAndPass(userEmail, userPassword) && userService.isAdmin(userEmail) != null) {
             User loginUser = userService.getUserByEmail(userEmail);
             map.addAttribute("hello", "Hello" + loginUser.getUserName());
             request.getSession(true).setAttribute("email", userEmail);
             System.out.println(loginUser.getUserRole());
-//            String role = "admin";
-//            String urole= loginUser.getUserName();
-//            if (specialistService.getSpecialistByEmail(userEmail) != null) {
-//                Specialist s = specialistService.getSpecialistByEmail(userEmail);
-//                map.put("id", s.getSpecialistId());
-//                map.put("name", s.getSpecialistName());
-//                map.put("email", s.getSpecialistEmail());
-//                map.put("contact", s.getSpecialistContactNo());
-//                map.put("specialty", s.getSpecialistSpeialty());
-//                map.put("qualification", s.getSpecialistQualification());
-//                map.put("address", s.getSpecialistAddress());
-//                return "specialistview";
-//            } 
-//            if (miService.getMiByEmail(userEmail) != null) {
-//                Mi m = miService.getMiByEmail(userEmail);
-//                //List<Outdoor> list = outdoorService.getPatientByMiId(m.getMiId());
-//                map.put("id", m.getMiId());
-//                map.put("name", m.getMiName());
-//                map.put("email", m.getMiEmail());
-//                map.put("contact", m.getMiContactNo());
-//                map.put("time", m.getMiTime());
-//                map.put("qualification", m.getMiQualification());
-//                map.put("address", m.getMiAddress());
-//                map.put("outdoor", new Outdoor());
-//                //map.put("listmi", list);
-//                return "miedit";
-//            }
             return "admin";
+        } else if (userService.getUserByEmailAndPass(userEmail, userPassword) && specialistService.getSpecialistByEmail(userEmail) != null) {
+            User loginUser = userService.getUserByEmail(userEmail);
+            map.addAttribute("hello", "Hello" + loginUser.getUserName());
+            request.getSession(true).setAttribute("email", userEmail);
+            System.out.println(loginUser.getUserRole());
+            Specialist s = specialistService.getSpecialistByEmail(userEmail);
+            map.put("id", s.getSpecialistId());
+            map.put("name", s.getSpecialistName());
+            map.put("email", s.getSpecialistEmail());
+            map.put("contact", s.getSpecialistContactNo());
+            map.put("specialty", s.getSpecialistSpeialty());
+            map.put("qualification", s.getSpecialistQualification());
+            map.put("address", s.getSpecialistAddress());
+            return "specialistview";
+        } else if (userService.getUserByEmailAndPass(userEmail, userPassword) && miService.getMiByEmail(userEmail) != null) {
+            User loginUser = userService.getUserByEmail(userEmail);
+            map.addAttribute("hello", "Hello" + loginUser.getUserName());
+            request.getSession(true).setAttribute("email", userEmail);
+            System.out.println(loginUser.getUserRole());
+            Mi m = miService.getMiByEmail(userEmail);
+            //List<Outdoor> list = outdoorService.getPatientByMiId(m.getMiId());
+            map.put("id", m.getMiId());
+            map.put("name", m.getMiName());
+            map.put("email", m.getMiEmail());
+            map.put("contact", m.getMiContactNo());
+            map.put("time", m.getMiTime());
+            map.put("qualification", m.getMiQualification());
+            map.put("address", m.getMiAddress());
+            map.put("outdoor", new Outdoor());
+            //map.put("listmi", list);
+            return "miedit";
         } else {
             map.addAttribute("incorrect", "Incorrect username or password");
             map.addAttribute("reg", "Yet not registered.. please <a href='/Restful_In_Peace/user'> register here</a>");
